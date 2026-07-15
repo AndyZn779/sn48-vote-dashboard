@@ -1,117 +1,131 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>张倩 × Team SII</title><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script><style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0e1a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-.hdr{background:linear-gradient(135deg,#0f1429,#1a1040);border-bottom:1px solid rgba(102,126,234,.2);padding:24px;text-align:center}
-.hdr h1{font-size:24px;font-weight:700;background:linear-gradient(135deg,#667eea,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
-.hdr p{color:#8899bb;font-size:12px}
-.c{max-width:1200px;margin:0 auto;padding:12px}.s{margin-bottom:14px}.st{font-size:13px;font-weight:600;color:#667eea;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;border-left:3px solid #667eea;padding-left:10px}
-.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}
-.cd{background:linear-gradient(180deg,rgba(20,25,50,.9),rgba(15,18,35,.95));border:1px solid rgba(102,126,234,.12);border-radius:8px;padding:12px}
-.cd h3{font-size:13px;font-weight:600;color:#c0c8e0;margin-bottom:8px}
-.ch{width:100%;height:270px}.ch-sm{height:190px}.full{grid-column:1/-1}
-table{width:100%;border-collapse:collapse;font-size:11px}th{color:#667eea;font-weight:600;padding:5px 6px;border-bottom:1px solid rgba(102,126,234,.2);text-align:left;font-size:10px;text-transform:uppercase}td{padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.04);color:#b0b8d0}.nm{font-weight:600;color:#fff}
-.sc{background:linear-gradient(135deg,rgba(102,126,234,.12),rgba(118,75,162,.08));border:1px solid rgba(102,126,234,.15);border-radius:8px;padding:10px;text-align:center}.sc .n{font-size:18px;font-weight:700;color:#fff}.sc .n.pk{color:#f093fb}.sc .n.gr{color:#38ef7d}.sc .n.bl{color:#4facfe}.sc .n.or{color:#f2994a}.sc .l{font-size:10px;color:#8899bb;margin-top:2px}
-.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px}
-.zq-badge{display:inline-block;background:rgba(240,147,251,.15);color:#f093fb;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;margin:0 2px}
-.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600;margin-right:2px}.snh{background:rgba(102,126,234,.2);color:#667eea}
-.risk-box{display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:600}
-.lo{text-align:center;padding:24px;color:#8899bb}
-.ft{text-align:center;color:#445;font-size:11px;padding:16px;margin-top:12px}
-@media(max-width:640px){.g{grid-template-columns:1fr}.hdr h1{font-size:20px}}
-</style></head><body>
-<div class="hdr"><h1>张倩 × Team SII</h1><p>❖ LIVE 实时分析</p></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>张倩 × Team SII</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0e1a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}.hdr{background:linear-gradient(135deg,#0f1429,#1a1040);border-bottom:1px solid rgba(102,126,234,.2);padding:24px;text-align:center}.hdr h1{font-size:24px;font-weight:700;background:linear-gradient(135deg,#667eea,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}.hdr p{color:#8899bb;font-size:12px}.c{max-width:1200px;margin:0 auto;padding:12px}.s{margin-bottom:14px}.st{font-size:13px;font-weight:600;color:#667eea;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;border-left:3px solid #667eea;padding-left:10px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}.cd{background:linear-gradient(180deg,rgba(20,25,50,.9),rgba(15,18,35,.95));border:1px solid rgba(102,126,234,.12);border-radius:8px;padding:12px}.cd h3{font-size:13px;font-weight:600;color:#c0c8e0;margin-bottom:8px}.ch{width:100%;height:270px}.ch-sm{height:200px}.full{grid-column:1/-1}table{width:100%;border-collapse:collapse;font-size:11px}th{color:#667eea;font-weight:600;padding:5px 6px;border-bottom:1px solid rgba(102,126,234,.2);text-align:left;font-size:10px;text-transform:uppercase}td{padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.04);color:#b0b8d0}.nm{font-weight:600;color:#fff}.sc{background:linear-gradient(135deg,rgba(102,126,234,.12),rgba(118,75,162,.08));border:1px solid rgba(102,126,234,.15);border-radius:8px;padding:10px;text-align:center}.sc .n{font-size:18px;font-weight:700;color:#fff}.sc .n.pk{color:#f093fb}.sc .n.gr{color:#38ef7d}.sc .n.bl{color:#4facfe}.sc .n.or{color:#f2994a}.sc .l{font-size:10px;color:#8899bb;margin-top:2px}.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px}.zq-badge{display:inline-block;background:rgba(240,147,251,.15);color:#f093fb;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600}.risk-box{display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:600}.lo{text-align:center;padding:30px;color:#8899bb;font-size:14px}.ft{text-align:center;color:#445;font-size:11px;padding:16px;margin-top:12px}@media(max-width:640px){.g{grid-template-columns:1fr}h1{font-size:20px}}</style></head><body>
+<div class="hdr"><h1>张倩 × Team SII</h1><p>● LIVE 实时分析</p></div>
 <div class="c" id="app"><div class="lo" id="loading">加载中...</div></div>
-<div class="ft">数据来源: xox48.top</div>
-<script>(async function(){var el=document.getElementById("loading"),API="https://xox48.top";
+<div class="ft">数据来源: xox48.top | 粉丝数据来自专属API</div>
+<script>
+(async function(){
+var el=document.getElementById("loading"),API="https://xox48.top";
 try{
-var [mR,fR,tR]=await Promise.all([
-  fetch(API+"/Api/vote2024").then(function(r){return r.json()}).then(function(d){return d.data.list}),
-  fetch(API+"/Api/fansrank").then(function(r){return r.json()}).then(function(d){return d.data.list}),
-  fetch(API+"/Api/vote999").then(function(r){return r.json()}).then(function(d){return d.data.list})
-]);
-var members=mR.slice().sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)});
-var fans=fR;
-var vote999=tR;
+var mr=await fetch(API+"/Api/vote2024").then(function(r){return r.json()}).then(function(d){return d.data.list});
+var members=mr.slice().sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)});
 var zqIdx=members.findIndex(function(m){return m.nickname==="张倩"});
+if(zqIdx<0){el.textContent="张倩未找到";return}
 var zq=members[zqIdx],zqVote=parseFloat(zq.vote);
-var near=[];for(var i=Math.max(0,zqIdx-5);i<Math.min(members.length,zqIdx+6);i++){near.push({rank:i+1,name:members[i].nickname,vote:parseFloat(members[i].vote),team:members[i].gname+"/"+members[i].tname,diff:parseFloat(members[i].vote)-zqVote,isTarget:i===zqIdx})}
-var zqFans=fans.filter(function(f){return f.fisrt.indexOf("张倩")>=0});
-var zqFanTotal=zqFans.length>0?zqFans.reduce(function(s,f){return s+parseFloat(f.vote)},0):0;
-var zq999=vote999.filter(function(r){return r.cy_name.indexOf("张倩")>=0});
-var s2all=[];for(var i=0;i<members.length;i++){if(members[i].tname.toLowerCase()==="s2")s2all.push({rank:i+1,member:members[i],vote:parseFloat(members[i].vote)})}
-s2all.sort(function(a,b){return a.rank-b.rank});
-var s2Tot=s2all.reduce(function(s,m){return s+m.vote},0);
-var s2Avg=s2Tot/s2all.length;
-var s2names={};s2all.forEach(function(m){s2names[m.member.nickname]=true});
-var s2fans=fans.filter(function(f){return s2names[f.fisrt]});
-var s2agg={};s2fans.forEach(function(f){if(!s2agg[f.fisrt])s2agg[f.fisrt]={total:0,count:0};s2agg[f.fisrt].total+=parseFloat(f.vote);s2agg[f.fisrt].count++});
-var s2sorted=Object.keys(s2agg).map(function(k){return{name:k,total:Math.round(s2agg[k].total*100)/100,count:s2agg[k].count}}).sort(function(a,b){return b.total-a.total});
-function getRisk(gap){return gap<10?"极高":gap<100?"高":gap<500?"中":gap<1000?"低":"极低"}
-function getRiskColor(gap){return gap<10?"#ee5a6f":gap<100?"#f2994a":gap<500?"#f2c94c":"#38ef7d"}
-var ctx=document.getElementById("app");
-var H=[];
+var fr=await fetch(API+"/Api/votefans",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({user_id:zq.cy_id})});
+var fd=await fr.json();
+var allFans=fd.data.list.slice().sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)});
+var totalFans=fd.data.pnum,fanTotal=allFans.reduce(function(s,f){return s+parseFloat(f.vote)},0);
+var giftData=fd.data.gift||[];
+var H=[],ctx=document.getElementById("app");
+
 H.push('<div class="sum">');
-H.push('<div class="sc"><div class="n pk">#'+(zqIdx+1)+'</div><div class="l">张倩排名</div></div>');
-H.push('<div class="sc"><div class="n gr">'+zqVote.toLocaleString()+'</div><div class="l">得票数</div></div>');
-H.push('<div class="sc"><div class="n bl">'+zq.gname+'/'+zq.tname+'</div><div class="l">所属</div></div>');
-H.push('<div class="sc"><div class="n or">'+(zqIdx<=31?"UG":zqIdx<=47?"NG":zqIdx<=65?"FG":"圈外")+'</div><div class="l">层级</div></div>');
-H.push('<div class="sc"><div class="n">'+zqFans.length+'</div><div class="l">Top粉丝</div></div>');
-H.push('<div class="sc"><div class="n">'+zq999.length+'</div><div class="l">999礼物</div></div>');
+H.push('<div class="sc"><div class="n pk">#'+(zqIdx+1)+'</div><div class="l">排名</div></div>');
+H.push('<div class="sc"><div class="n gr">'+zqVote.toLocaleString()+'</div><div class="l">得票</div></div>');
+H.push('<div class="sc"><div class="n bl">'+zq.gname+'/'+zq.tname+'</div><div class="l">队伍</div></div>');
+H.push('<div class="sc"><div class="n or">'+totalFans+'人</div><div class="l">粉丝总数</div></div>');
+H.push('<div class="sc"><div class="n">'+giftData.length+'种</div><div class="l">礼物类型</div></div>');
 H.push('</div>');
+
+// Competition
 H.push('<div class="s"><div class="st">竞争分析</div><div class="g">');
-H.push('<div class="cd full"><h3>张倩周边竞争 · 前后5名</h3><div id="zqc1" class="ch"></div></div>');
-var gapBelow=near.find(function(n){return n.rank===zqIdx+2});var gb=gapBelow?Math.abs(gapBelow.diff):9999;
-var riskLvl=getRisk(gb),riskClr=getRiskColor(gb);
-H.push('<div class="cd" style="grid-column:span 1"><h3>被超风险评级</h3>');
-H.push('<div style="text-align:center;padding:10px 0"><div style="font-size:32px;font-weight:700;color:'+riskClr+'">'+riskLvl+'</div><div style="font-size:11px;color:#8899bb">被后位成员超越的风险</div></div>');
-var gapAbove=near.find(function(n){return n.rank===zqIdx});
-var gapBelow2=near.find(function(n){return n.rank===zqIdx+3});
-H.push('<div style="font-size:11px;color:#b0b8d0;line-height:1.8">');
-if(gapAbove)H.push('与前一位(<b>'+gapAbove.name+'</b>)差距: <span class="zq-badge">'+Math.abs(gapAbove.diff)+'票</span><br>');
-if(gapBelow)H.push('与后一位(<b>'+gapBelow.name+'</b>)差距: <span class="zq-badge">'+Math.abs(gapBelow.diff)+'票</span><br>');
-if(gapBelow2)H.push('与后两位(<b>'+gapBelow2.name+'</b>)差距: <span class="zq-badge">'+Math.abs(gapBelow2.diff)+'票</span><br>');
-H.push('<br><b>圈线参考:</b><br>');
-H.push('UG圈(第32名): <span class="zq-badge">'+(parseFloat(members[31].vote)-zqVote).toFixed(0)+'票差</span><br>');
-H.push('NG圈(第48名): <span class="zq-badge">'+(zqVote-parseFloat(members[47].vote)).toFixed(0)+'票差</span></div></div>');
-H.push('<div class="cd" style="grid-column:span 1"><h3>超车概率</h3><table><tr><th>挑战者</th><th>差距</th><th>概率</th></tr>');
-for(var i=zqIdx+1;i<Math.min(members.length,zqIdx+6);i++){var mt=members[i],vt=parseFloat(mt.vote),gt=zqVote-vt;var pr=getRisk(gt),pc=getRiskColor(gt);H.push('<tr><td>#'+(i+1)+' '+mt.nickname+'</td><td class="nm">'+gt.toFixed(0)+'</td><td><span class="risk-box" style="background:'+pc+'33;color:'+pc+'">'+pr+'</span></td></tr>')}
+var near=[];
+for(var i=Math.max(0,zqIdx-5);i<Math.min(members.length,zqIdx+6);i++){
+  near.push({rank:i+1,name:members[i].nickname,vote:parseFloat(members[i].vote),isTarget:i===zqIdx});
+}
+H.push('<div class="cd full"><h3>张倩周边竞争</h3><div id="zq1" class="ch"></div></div>');
+
+var gb=near.find(function(n){return n.rank===zqIdx+2});gb=gb?Math.abs(gb.vote-zqVote):999;
+var rl=gb<50?"极高":gb<100?"高":gb<500?"中":gb<1000?"低":"极低";
+var rc=gb<50?"#ee5a6f":gb<100?"#f2994a":gb<500?"#f2c94c":"#38ef7d";
+H.push('<div class="cd"><h3>被超风险</h3><div style="text-align:center;padding:10px 0"><div style="font-size:32px;font-weight:700;color:'+rc+'">'+rl+'</div></div>');
+var gapA=near.find(function(n){return n.rank===zqIdx});
+var gapB=near.find(function(n){return n.rank===zqIdx+2});
+if(gapA)H.push('与前一(<b>'+gapA.name+'</b>)差 <span class="zq-badge">'+Math.abs(gapA.vote-zqVote).toFixed(0)+'票</span><br>');
+if(gapB)H.push('与后一(<b>'+gapB.name+'</b>)差 <span class="zq-badge">'+Math.abs(gapB.vote-zqVote).toFixed(0)+'票</span><br>');
+H.push('UG圈线(#32): <span class="zq-badge">'+(parseFloat(members[31].vote)-zqVote).toFixed(0)+'票差</span><br>');
+H.push('NG圈线(#48): <span class="zq-badge">'+(zqVote-parseFloat(members[47].vote)).toFixed(0)+'票差</span></div>');
+
+// Threats
+H.push('<div class="cd"><h3>超车概率</h3><table><tr><th>挑战者</th><th>差距</th><th>概率</th></tr>');
+for(var i=zqIdx+1;i<Math.min(members.length,zqIdx+6);i++){
+  var mt=members[i],gt=zqVote-parseFloat(mt.vote);
+  var pn=gt<10?"极高":gt<100?"高":gt<500?"中":"低";
+  var pc=gt<10?"#ee5a6f":gt<100?"#f2994a":gt<500?"#f2c94c":"#38ef7d";
+  H.push('<tr><td>#'+(i+1)+' '+mt.nickname+'</td><td class="nm">'+gt.toFixed(0)+'</td><td><span class="risk-box" style="background:'+pc+'33;color:'+pc+'">'+pn+'</span></td></tr>');
+}
+H.push('</table></div></div></div>');
+
+// FANS SECTION
+H.push('<div class="s"><div class="st">粉丝分析 (全部'+totalFans+'人, 总计'+fanTotal.toFixed(0)+'票)</div><div class="g">');
+
+// Top 20 table
+var top20Total=allFans.slice(0,20).reduce(function(s,f){return s+parseFloat(f.vote)},0);
+H.push('<div class="cd full" style="overflow-x:auto"><h3>Top 20 粉丝贡献明细</h3><table><tr><th>#</th><th>粉丝名</th><th>票数</th><th>占张倩总票</th><th>累积</th></tr>');
+var cum=0;
+for(var i=0;i<Math.min(allFans.length,20);i++){
+  var f=allFans[i],v=parseFloat(f.vote);
+  cum+=v;
+  H.push('<tr><td>'+(i+1)+'</td><td>'+f.user_name+'</td><td class="nm">'+v.toLocaleString()+'</td><td>'+(v/zqVote*100).toFixed(1)+'%</td><td>'+(cum/zqVote*100).toFixed(1)+'%</td></tr>');
+}
+H.push('<tr style="background:rgba(240,147,251,.06)"><td><b>合计20人</b></td><td></td><td class="nm"><b>'+top20Total.toFixed(0).toLocaleString()+'</b></td><td><b>'+(top20Total/zqVote*100).toFixed(1)+'%</b></td><td></td></tr>');
 H.push('</table></div>');
-H.push('<div class="cd" style="grid-column:span 1"><h3>票数构成 · 粉丝</h3><div style="font-size:11px;color:#b0b8d0;line-height:1.8">');
-H.push('粉丝数(Top500): <b class="nm">'+zqFans.length+'人</b><br>');
-if(zqFanTotal>0){H.push('粉丝总贡献: <b class="nm">'+zqFanTotal.toFixed(0).toLocaleString()+'票</b><br>');
-H.push('粉丝依赖度: <b class="nm">'+(zqFanTotal/zqVote*100).toFixed(1)+'%</b><br>');}
-H.push('999礼物: <b class="nm">'+zq999.length+'条</b> 价值 <b class="nm">'+(zq999.length*999).toLocaleString()+'票</b><br>');
-if(zqFans.length>0){H.push('<hr style="border-color:rgba(255,255,255,.06);margin:6px 0">');
-zqFans.forEach(function(f,i){var pct=(parseFloat(f.vote)/zqVote*100).toFixed(1);H.push('<span style="font-size:10px">'+(i+1)+'. '+f.user_name+' '+parseFloat(f.vote).toLocaleString()+'票('+pct+'%)'+(i<zqFans.length-1?"<br>":"")+'</span>')})}
+
+// Fan metrics
+var top1=allFans[0],top5=allFans.slice(0,5).reduce(function(s,f){return s+parseFloat(f.vote)},0);
+H.push('<div class="cd"><h3>粉丝量化指标</h3><div style="font-size:11px;color:#b0b8d0;line-height:1.8">');
+H.push('① 粉丝依赖度<br>全部'+totalFans+'人贡献 '+fanTotal.toFixed(0).toLocaleString()+' 票 ('+(fanTotal/zqVote*100).toFixed(1)+'% 覆盖率)<br><br>');
+H.push('② 粉丝集中度<br>Top1 ('+top1.user_name+'): '+(parseFloat(top1.vote)/fanTotal*100).toFixed(0)+'%<br>Top5: '+(top5/fanTotal*100).toFixed(0)+'%<br>Top10: '+(allFans.slice(0,10).reduce(function(s,f){return s+parseFloat(f.vote)},0)/fanTotal*100).toFixed(0)+'%<br>Top20: '+(top20Total/fanTotal*100).toFixed(0)+'%<br><br>');
+H.push('<b>③ 礼物分析</b><br>');
+var gv=0;
+giftData.forEach(function(g){gv+=parseFloat(g.vote);H.push(g.gift_name+'礼物 ×'+g.gift_num+' = '+parseFloat(g.vote).toLocaleString()+'票 ('+(parseFloat(g.vote)/zqVote*100).toFixed(1)+'%)<br>')});
+H.push('<br>');
+H.push('结论: 张倩粉丝结构为「头部集中型」，前5名贡献'+(top5/zqVote*100).toFixed(1)+'%。标杆粉丝「'+top1.user_name+'」单投'+(parseFloat(top1.vote)/zqVote*100).toFixed(0)+'%。尾部'+(totalFans-5)+'人贡献'+(1-top5/fanTotal)*100+'%。</div></div>');
+
+H.push('<div class="cd"><h3>粉丝贡献分布</h3><div id="zq2" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>礼物组成</h3><div id="zq3" class="ch-sm"></div></div>');
 H.push('</div></div>');
-H.push('</div></div>');
-H.push('<div class="s"><div class="st">Team SII (S2) 分析</div><div class="sum">');
+
+// S2 section
+var s2all=[];
+for(var i=0;i<members.length;i++){if(members[i].tname.toLowerCase()==="s2")s2all.push({rank:i+1,member:members[i],vote:parseFloat(members[i].vote)})}
+s2all.sort(function(a,b){return a.rank-b.rank});
+var s2Tot=s2all.reduce(function(s,m){return s+m.vote},0),s2Avg=s2Tot/s2all.length;
+
+H.push('<div class="s"><div class="st">Team SII (S2)</div><div class="sum">');
 H.push('<div class="sc"><div class="n">'+s2all.length+'人</div><div class="l">人数</div></div>');
 H.push('<div class="sc"><div class="n pk">'+(s2Tot/10000).toFixed(1)+'万</div><div class="l">总票</div></div>');
-H.push('<div class="sc"><div class="n gr">'+Math.round(s2Avg).toLocaleString()+'</div><div class="l">人均票</div></div>');
+H.push('<div class="sc"><div class="n gr">'+Math.round(s2Avg).toLocaleString()+'</div><div class="l">人均</div></div>');
 H.push('<div class="sc"><div class="n bl">'+s2all.filter(function(m){return m.rank<=48}).length+'人</div><div class="l">圈内</div></div>');
 H.push('<div class="sc"><div class="n or">'+s2all.filter(function(m){return m.rank<=16}).length+'人</div><div class="l">选拔组</div></div>');
-H.push('</div><div class="g">');
-H.push('<div class="cd full"><h3>S2成员票数分布</h3><div id="zqc2" class="ch"></div></div>');
-H.push('<div class="cd" style="grid-column:span 1"><h3>S2成员风险</h3><div style="max-height:320px;overflow-y:auto"><table><tr><th>排名</th><th>成员</th><th>票数</th><th>上下差</th><th>层级</th></tr>');
-for(var i=0;i<s2all.length;i++){var m=s2all[i];var ga=i>0?s2all[i-1].vote-m.vote:0;var gb=i<s2all.length-1?m.vote-s2all[i+1].vote:0;var st=m.rank<=16?"选拔":m.rank<=32?"UG":m.rank<=48?"NG":m.rank<=66?"FG":"圈外";H.push('<tr><td class="nm">#'+m.rank+'</td><td>'+m.member.nickname+(m.member.nickname==="张倩"?" ⭐":"")+'</td><td class="nm">'+m.vote.toLocaleString()+'</td><td>'+ga.toFixed(0)+'/'+gb.toFixed(0)+'</td><td>'+st+'</td></tr>')}
-H.push('</table></div></div>');
-H.push('<div class="cd"><h3>S2粉丝贡献</h3><div id="zqc3" class="ch-sm"></div></div>');
-H.push('<div class="cd"><h3>S2量化指标</h3><table><tr><th>指标</th><th>数值</th></tr>');
-var s2Top16=s2all.filter(function(m){return m.rank<=16}).length;
-H.push('<tr><td>选拔组人数</td><td class="nm">'+s2Top16+'/16</td></tr>');
-H.push('<tr><td>UG圈人数</td><td class="nm">'+s2all.filter(function(m){return m.rank<=32}).length+'</td></tr>');
-H.push('<tr><td>NG圈人数</td><td class="nm">'+s2all.filter(function(m){return m.rank<=48}).length+'</td></tr>');
-H.push('<tr><td>圈率</td><td class="nm">'+(s2all.filter(function(m){return m.rank<=48}).length/s2all.length*100).toFixed(0)+'%</td></tr>');
-H.push('<tr><td>队内基尼</td><td class="nm">'+(function(){var vv=s2all.map(function(m){return m.vote}).sort(function(a,b){return a-b});var nn=vv.length,ss=vv.reduce(function(x,y){return x+y},0),ssi=0;for(var i=0;i<nn;i++)ssi+=(i+1)*vv[i];return ((2*ssi-(nn+1)*ss)/(nn*ss)).toFixed(4)})()+'</td></tr>');
-H.push('<tr><td>最高/最低比</td><td class="nm">'+(s2all[0].vote/s2all[s2all.length-1].vote).toFixed(1)+'x</td></tr>');
-H.push('</table></div>');
-H.push('</div></div>');
+H.push('</div><div class="g"><div class="cd full"><h3>S2成员票数</h3><div id="zq4" class="ch"></div></div></div></div>');
+
 ctx.innerHTML=H.join("");
-var ec=echarts;
-(function(){var d=near;var c=ec.init(document.getElementById("zqc1"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){return"<b>"+p[0].name+"</b><br/>票数: <b>"+p[0].value.toLocaleString()+"</b>"}},grid:{left:10,right:50,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"万":v}}},yAxis:{type:"category",data:[].concat(d).reverse().map(function(n){return(n.isTarget?"⭐ ":"")+n.name}),axisLabel:{fontSize:12,fontWeight:"bold",color:function(v){return v.indexOf("⭐")>=0?"#f093fb":"#c0c8e0"}}},series:[{type:"bar",data:[].concat(d).reverse().map(function(n){return{value:n.vote,itemStyle:{color:n.isTarget?"#f093fb":"#667eea",borderRadius:[0,6,6,0]}}}),barMaxWidth:28,label:{show:true,position:"right",fontSize:10,color:"#fff",formatter:function(p){return p.value>=10000?(p.value/10000).toFixed(1)+"万":p.value}}}]})})();
-(function(){var d=s2all;var c=ec.init(document.getElementById("zqc2"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){return"<b>"+p[0].name+"</b><br/>票数: <b>"+p[0].value.toLocaleString()+"</b>"}},grid:{left:10,right:40,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:10,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(0)+"万":v}}},yAxis:{type:"category",data:[].concat(d).reverse().map(function(m){return m.member.nickname}),axisLabel:{fontSize:10,color:"#b0b8d0"}},series:[{type:"bar",data:[].concat(d).reverse().map(function(m){return{value:m.vote,itemStyle:{color:m.member.nickname==="张倩"?"#f093fb":"#667eea",borderRadius:[0,6,6,0]}}}),barMaxWidth:18,label:{show:true,position:"right",fontSize:9,color:"#8899bb",formatter:function(p){return p.value>=10000?(p.value/10000).toFixed(1)+"万":p.value}}}]})})();
-(function(){var d=s2sorted;if(d.length===0){document.getElementById("zqc3").innerHTML="<div style=padding:30px;text-align:center;color:#8899bb>暂无数据</div>";return}var c=ec.init(document.getElementById("zqc3"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){return"<b>"+p[0].name+"</b><br/>粉丝贡献: <b>"+p[0].value.toLocaleString()+"票</b>"}},grid:{left:10,right:40,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:9,color:"#8899bb"}},yAxis:{type:"category",data:[].concat(d).reverse().map(function(m){return m.name}),axisLabel:{fontSize:9,color:"#b0b8d0"}},series:[{type:"bar",data:[].concat(d).reverse().map(function(m){return{value:m.total,itemStyle:{color:m.name==="张倩"?"#f093fb":"#4facfe",borderRadius:[0,6,6,0]}}}),barMaxWidth:16}]})})();
+
+// CHARTS
+// 1. Competition
+var c1=echarts.init(document.getElementById("zq1"));
+c1.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:10,right:50,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"万":v}}},yAxis:{type:"category",data:[].concat(near).reverse().map(function(n){return(n.isTarget?"⭐ ":"")+n.name}),axisLabel:{fontSize:12,fontWeight:"bold"}},series:[{type:"bar",data:[].concat(near).reverse().map(function(n){return{value:n.vote,itemStyle:{color:n.isTarget?"#f093fb":"#667eea",borderRadius:[0,6,6,0]}}}),barMaxWidth:28}]});
+
+// 2. Fan distribution
+var top20=allFans.slice(0,20);
+var c2=echarts.init(document.getElementById("zq2"));
+c2.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){return"<b>"+p[0].name+"</b><br/>贡献: "+p[0].value.toLocaleString()+"票"}},grid:{left:10,right:40,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:9,color:"#8899bb"}},yAxis:{type:"category",data:[].concat(top20).reverse().map(function(f){return f.user_name.substring(0,10)}),axisLabel:{fontSize:9,color:"#b0b8d0"}},series:[{type:"bar",data:[].concat(top20).reverse().map(function(f){var v=parseFloat(f.vote);return{value:v,itemStyle:{color:v>1000?"#ee5a6f":v>500?"#f2994a":v>100?"#f2c94c":"#667eea",borderRadius:[0,6,6,0]}}}),barMaxWidth:16}]});
+
+// 3. Gift pie
+var gd=giftData.map(function(g){return{name:g.gift_name+"礼物",value:parseFloat(g.vote)}}).sort(function(a,b){return b.value-a.value});
+var c3=echarts.init(document.getElementById("zq3"));
+c3.setOption({tooltip:{trigger:"item",formatter:"{b}: {c}票 ({d}%)"},series:[{type:"pie",radius:["35%","60%"],center:["50%","50%"],data:gd,label:{fontSize:11,formatter:"{b}\n{d}%"},itemStyle:{borderRadius:4,borderColor:"#0a0e1a",borderWidth:2}}]});
+
+// 4. S2 members
+var c4=echarts.init(document.getElementById("zq4"));
+c4.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:10,right:40,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:10,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(0)+"万":v}}},yAxis:{type:"category",data:[].concat(s2all).reverse().map(function(m){return m.member.nickname}),axisLabel:{fontSize:10,color:"#b0b8d0"}},series:[{type:"bar",data:[].concat(s2all).reverse().map(function(m){return{value:m.vote,itemStyle:{color:m.member.nickname==="张倩"?"#f093fb":"#667eea",borderRadius:[0,6,6,0]}}}),barMaxWidth:18}]});
+
 el.textContent="";
-}catch(e){el.innerHTML="<p style=color:#ee5a6f>加载失败: "+e.message+"</p>"}})();
+}catch(e){el.innerHTML="<p style=color:#ee5a6f>加载失败: "+e.message+"</p>"}
+})();
 </script></body></html>
