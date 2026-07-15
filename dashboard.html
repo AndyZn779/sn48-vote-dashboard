@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="UTF-8"><title>SNH48 Group 计分查询 Dashboard</title><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#333}.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:24px 32px;margin-bottom:24px}.header h1{font-size:24px;margin-bottom:4px}.header p{opacity:.85;font-size:14px}.container{max-width:1440px;margin:0 auto;padding:0 16px 40px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}.card{background:white;border-radius:10px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.card h2{font-size:15px;font-weight:600;margin-bottom:12px;color:#444}.card.full{grid-column:1/-1}.card.half{grid-column:span 1}.chart{width:100%;height:360px}.chart-sm{height:300px}.chart-lg{height:420px}.stat-row{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}.stat-box{flex:1;min-width:140px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:8px;padding:14px 16px;color:white;text-align:center}.stat-box .num{font-size:22px;font-weight:700}.stat-box .label{font-size:12px;opacity:.85;margin-top:2px}.stat-box.green{background:linear-gradient(135deg,#11998e,#38ef7d)}.stat-box.orange{background:linear-gradient(135deg,#f2994a,#f2c94c)}.stat-box.pink{background:linear-gradient(135deg,#ee5a6f,#f093fb)}.stat-box.blue2{background:linear-gradient(135deg,#4facfe,#00f2fe)}.footer{text-align:center;color:#999;font-size:12px;margin-top:24px;padding:16px}@media(max-width:640px){.grid{grid-template-columns:1fr}.header{padding:16px 20px}}</style></head><body><div class="header"><h1>🏆 SNH48 Group 计分查询 Dashboard</h1><p>数据来源: xox48.top | 共 217 名成员 · Top 300 粉丝 · 349 条 999 礼物记录</p></div><div class="container"><div class="stat-row"><div class="stat-box"><div class="num">217</div><div class="label">参选成员</div></div><div class="stat-box green"><div class="num">116.7万</div><div class="label">总票数</div></div><div class="stat-box orange"><div class="num">5378</div><div class="label">平均票数</div></div><div class="stat-box pink"><div class="num">76911</div><div class="label">最高票数</div></div><div class="stat-box blue2"><div class="num">2.64万</div><div class="label">最高粉丝贡献</div></div></div><div class="grid"><div class="card"><h2>🥇 Top 20 成员</h2><div id="chartTop20" class="chart"></div></div><div class="card"><h2>🎯 集团票数分布</h2><div id="chartGroup" class="chart"></div></div><div class="card full"><h2>🏷️ 各队票数排行</h2><div id="chartTeams" class="chart chart-lg"></div></div><div class="card half"><h2>📊 票数分布曲线</h2><div id="chartDist" class="chart chart-sm"></div></div><div class="card half"><h2>👥 各集团参选人数</h2><div id="chartGroupCount" class="chart chart-sm"></div></div><div class="card"><h2>⭐ Top 20 粉丝</h2><div id="chartFans" class="chart"></div></div><div class="card"><h2>⏰ 小时榜 Top 25</h2><div id="chartHour" class="chart"></div></div><div class="card"><h2>🎁 近期 999 礼物排行</h2><div id="chart999" class="chart chart-sm"></div></div></div></div><div class="footer">数据来源: xox48.top | 更新时间: 2026年 | Dashboard 自动生成</div>
+<script>
+// ===== LIVE DATA LOADER =====
+// Fetches fresh data from xox48.top API on every page load
+(function() {
+  var API_BASE = 'https://xox48.top';
+  var allData = {};
+  var loadingEl = document.createElement('div');
+  loadingEl.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(102,126,234,.9);color:#fff;text-align:center;padding:6px;font-size:13px;transition:opacity .3s';
+  
+  function showLoading(msg) {
+    loadingEl.textContent = '⏳ ' + msg;
+    if (!loadingEl.parentNode) document.body.appendChild(loadingEl);
+  }
+  function hideLoading() {
+    loadingEl.style.opacity = '0';
+    setTimeout(function(){ if(loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl); }, 300);
+  }
+  
+  showLoading('正在获取最新数据...');
+  
+  Promise.all([
+    fetch(API_BASE + '/Api/vote2024').then(function(r){return r.json()}).then(function(d){allData.members=d.data.list;allData.members.sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)})}),
+    fetch(API_BASE + '/Api/fansrank').then(function(r){return r.json()}).then(function(d){allData.fans=d.data.list;allData.fans.sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)})}),
+    fetch(API_BASE + '/Api/vote999').then(function(r){return r.json()}).then(function(d){allData.vote999=d.data.list}),
+    fetch(API_BASE + '/Api/hour_rank').then(function(r){return r.json()}).then(function(d){allData.hourRank=d.data.prev}),
+    fetch(API_BASE + '/Api/get_team').then(function(r){return r.json()}).then(function(d){allData.teams=d.data.team})
+  ]).then(function() {
+    hideLoading();
+    var members = allData.members;
+    var fans = allData.fans;
+    var vote999 = allData.vote999;
+    var hourRank = allData.hourRank;
+    
+    // Process data (same logic as original)
+    var totalVotes = members.reduce(function(s,m){return s+parseFloat(m.vote)},0);
+    
+    // Group colors
+    var groupColors = {SNH:"#667eea",GNZ:"#38ef7d",BEJ:"#f2994a",CKG:"#ee5a6f",CGT:"#4facfe"};
+    var teamColors = {
+      "SNH/S2":"#5B67CA","SNH/N2":"#7C5CBF","SNH/H2":"#9C51B5","SNH/X":"#BB46AA",
+      "SNH/YBS":"#8E7CC3","BEJ/B":"#E8924A","BEJ/E":"#D5774D","BEJ/YBS":"#C29655",
+      "GNZ/G":"#2DB87A","GNZ/N3":"#3CA86E","GNZ/Z":"#4B9862","GNZ/YBS":"#5A8856",
+      "CKG/C":"#D45D6A","CKG/K":"#C34F5C","CKG/YBS":"#B2414E",
+      "CGT/C2":"#3B9BD2","CGT/G2":"#2D8BBC","CGT/YBS":"#1F7BA6"
+    };
+    
+    // Update stat cards
+    var statCards = document.querySelectorAll('.stat-box .num');
+    if(statCards.length >= 5) {
+      statCards[0].textContent = members.length;
+      statCards[1].textContent = (totalVotes/10000).toFixed(1) + '万';
+      statCards[2].textContent = (totalVotes/members.length).toFixed(0);
+      statCards[3].textContent = parseFloat(members[0].vote).toFixed(0);
+      statCards[4].textContent = (parseFloat(fans[0].vote)/10000).toFixed(2) + '万';
+    }
+    
+    // Re-render all charts
+    // Chart 1: Top 20
+    var c1 = echarts.init(document.getElementById('chartTop20'));
+    var sorted20 = members.slice(0,20);
+    c1.setOption({
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){var d=p[0];return'<b>'+d.name+'</b><br/>票数: <b>'+d.value.toLocaleString()+'</b><br/>队伍: '+d.data.team+'<br/>排名: #'+d.data.rank}},
+      grid:{left:10,right:20,top:20,bottom:60,containLabel:true},
+      xAxis:{type:'value',axisLabel:{fontSize:11,formatter:function(v){return v>=10000?(v/10000).toFixed(0)+'万':v}}},
+      yAxis:{type:'category',data:sorted20.map(function(m){return m.nickname}).reverse(),axisLabel:{fontSize:11}},
+      series:[{type:'bar',data:sorted20.map(function(m){var v=parseFloat(m.vote);return{value:v,itemStyle:{color:teamColors[m.gname+'/'+m.tname]||'#667eea'},team:m.gname+'/'+m.tname,rank:m.rank}}).reverse(),barMaxWidth:24,label:{show:true,position:'right',fontSize:10,formatter:function(p){return p.value>=10000?(p.value/10000).toFixed(1)+'万':p.value}}}]
+    });
+    
+    // Chart 2: Group distribution
+    var groups={};members.forEach(function(m){var g=m.gname;if(!groups[g])groups[g]=0;groups[g]+=parseFloat(m.vote)});
+    var gData=Object.keys(groups).map(function(k){return{name:k,value:Math.round(groups[k]*100)/100}}).sort(function(a,b){return b.value-a.value});
+    var c2=echarts.init(document.getElementById('chartGroup'));
+    c2.setOption({tooltip:{trigger:'item',formatter:'{b}: {c} ({d}%)'},series:[{type:'pie',radius:['30%','60%'],center:['50%','50%'],data:gData,label:{fontSize:12,formatter:'{b}\
+{d}%'},itemStyle:{borderRadius:4,borderColor:'#fff',borderWidth:2}}]});
+    
+    // Chart 3: Team distribution
+    var teams={};members.forEach(function(m){var tk=m.gname+'/'+m.tname;if(!teams[tk])teams[tk]={name:tk,count:0,total:0};teams[tk].count++;teams[tk].total+=parseFloat(m.vote)});
+    var tData=Object.keys(teams).map(function(k){return teams[k]}).sort(function(a,b){return b.total-a.total});
+    var c3=echarts.init(document.getElementById('chartTeams'));
+    c3.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){var d=p[0];return'<b>'+d.name+'</b><br/>总票数: <b>'+(d.value/10000).toFixed(1)+'万</b><br/>人数: '+d.data.count+'人<br/>平均: '+(d.data.total/d.data.count).toFixed(0)}},grid:{left:10,right:20,top:20,bottom:50,containLabel:true},xAxis:{type:'value',axisLabel:{fontSize:11,formatter:function(v){return v>=10000?(v/10000).toFixed(0)+'万':v}}},yAxis:{type:'category',data:tData.map(function(d){return d.name}).reverse(),axisLabel:{fontSize:11}},series:[{type:'bar',data:tData.map(function(d){return{value:Math.round(d.total*100)/100,itemStyle:{color:teamColors[d.name]||'#667eea'},count:d.count,avg:Math.round(d.total/d.count)}}).reverse(),barMaxWidth:20,label:{show:true,position:'right',fontSize:10,formatter:function(p){return(p.value/10000).toFixed(1)+'万'}}}]});
+    
+    // Chart 4: Vote distribution
+    var c4=echarts.init(document.getElementById('chartDist'));
+    var distData=members.map(function(m,i){return[i+1,parseFloat(m.vote)]});
+    c4.setOption({tooltip:{trigger:'axis',formatter:function(p){var d=p[0];return'排名 #'+d.data[0]+'<br/>票数: <b>'+d.data[1].toLocaleString()+'</b><br/>'+members[d.data[0]-1].nickname}},grid:{left:10,right:20,top:20,bottom:30,containLabel:true},xAxis:{type:'value',name:'排名',nameTextStyle:{fontSize:10},axisLabel:{fontSize:10}},yAxis:{type:'value',name:'票数',nameTextStyle:{fontSize:10},axisLabel:{fontSize:10,formatter:function(v){return v>=10000?(v/10000).toFixed(0)+'万':v}}},series:[{type:'line',data:distData,smooth:false,symbolSize:3,areaStyle:{opacity:0.15,color:'#667eea'},itemStyle:{color:'#667eea'},markLine:{silent:true,data:[{yAxis:members[0].vote/10,label:{formatter:'10%线'}}]}}]});
+    
+    // Chart 5: Group count
+    var gc={};members.forEach(function(m){if(!gc[m.gname])gc[m.gname]=0;gc[m.gname]++});
+    var gcd=Object.keys(gc).map(function(k){return{name:k,value:gc[k]}}).sort(function(a,b){return b.value-a.value});
+    var c5=echarts.init(document.getElementById('chartGroupCount'));
+    c5.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},grid:{left:10,right:20,top:20,bottom:30,containLabel:true},xAxis:{type:'value',axisLabel:{fontSize:10}},yAxis:{type:'category',data:gcd.map(function(d){return d.name}).reverse(),axisLabel:{fontSize:12,fontWeight:'bold'}},series:[{type:'bar',data:gcd.map(function(d){return{value:d.value,itemStyle:{color:groupColors[d.name]||'#667eea'}}}).reverse(),barMaxWidth:32,label:{show:true,position:'right',fontSize:12,fontWeight:'bold'}}]});
+    
+    // Chart 6: Top fans
+    var top20fans=fans.slice(0,20);
+    var c6=echarts.init(document.getElementById('chartFans'));
+    c6.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){var d=p[0];return'<b>'+d.name+'</b><br/>贡献: <b>'+d.value.toLocaleString()+'</b><br/>主推: '+d.data.target+'<br/>占比: '+d.data.percent}},grid:{left:10,right:20,top:20,bottom:60,containLabel:true},xAxis:{type:'value',axisLabel:{fontSize:10,formatter:function(v){return v>=10000?(v/10000).toFixed(0)+'万':v}}},yAxis:{type:'category',data:top20fans.map(function(f){return f.user_name.substring(0,10)}).reverse(),axisLabel:{fontSize:10}},series:[{type:'bar',data:top20fans.map(function(f){var v=parseFloat(f.vote);return{value:v,itemStyle:{color:v>10000?'#ee5a6f':v>5000?'#f2994a':'#667eea'},target:f.fisrt,percent:f.percent}}).reverse(),barMaxWidth:20,label:{show:true,position:'right',fontSize:9,formatter:function(p){return p.value>=10000?(p.value/10000).toFixed(1)+'万':p.value}}}]});
+    
+    // Chart 7: Hour rank
+    var c7=echarts.init(document.getElementById('chartHour'));
+    var sortedHour=[].concat(hourRank).sort(function(a,b){return parseInt(a.rank)-parseInt(b.rank)});
+    c7.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){var d=p[0];return'#'+d.data.rank+' <b>'+d.name+'</b><br/>小时票: '+d.value+'<br/>队伍: '+d.data.team}},grid:{left:10,right:20,top:20,bottom:60,containLabel:true},xAxis:{type:'value',axisLabel:{fontSize:10}},yAxis:{type:'category',data:sortedHour.map(function(h){return h.user_name}).reverse(),axisLabel:{fontSize:10}},series:[{type:'bar',data:sortedHour.map(function(h){var v=parseFloat(h.vote);return{value:v,itemStyle:{color:groupColors[h.gname]||'#667eea'},rank:h.rank,team:h.gname+'/'+h.tname}}).reverse(),barMaxWidth:18,label:{show:true,position:'right',fontSize:9}}]});
+    
+    // Chart 8: 999 gifts
+    var cy999={};vote999.slice(0,50).forEach(function(r){if(!cy999[r.cy_name])cy999[r.cy_name]=0;cy999[r.cy_name]++});
+    var g999Data=Object.keys(cy999).map(function(k){return{name:k,value:cy999[k]}}).sort(function(a,b){return b.value-a.value}).slice(0,15);
+    var c8=echarts.init(document.getElementById('chart999'));
+    c8.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},grid:{left:10,right:20,top:20,bottom:30,containLabel:true},xAxis:{type:'value',axisLabel:{fontSize:10}},yAxis:{type:'category',data:g999Data.map(function(d){return d.name}).reverse(),axisLabel:{fontSize:11}},series:[{type:'bar',data:g999Data.map(function(d){return{value:d.value,itemStyle:{color:'#f093fb'}}}).reverse(),barMaxWidth:24,label:{show:true,position:'right',fontSize:11,fontWeight:'bold'}}]});
+    
+    console.log('Dashboard updated with live data:', new Date().toLocaleString());
+  }).catch(function(err) {
+    hideLoading();
+    loadingEl.textContent = '⚠️ 数据加载失败: ' + err.message;
+    loadingEl.style.background = 'rgba(238,90,111,.9)';
+    setTimeout(function(){ if(loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl); }, 5000);
+  });
+})();
+</script></body></html>

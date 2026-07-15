@@ -1,0 +1,652 @@
+{
+  "zq": {
+    "rank": 34,
+    "name": "张倩",
+    "vote": 11313,
+    "team": "SNH/S2",
+    "above": [
+      {
+        "rank": 24,
+        "name": "黄孟浠",
+        "vote": 12616.2,
+        "team": "CKG/C",
+        "gap": 1303.2000000000007,
+        "dir": "above"
+      },
+      {
+        "rank": 25,
+        "name": "杨心渝",
+        "vote": 12553.4,
+        "team": "SNH/S2",
+        "gap": 1240.3999999999996,
+        "dir": "above"
+      },
+      {
+        "rank": 26,
+        "name": "何馨曼",
+        "vote": 12384.2,
+        "team": "CKG/K",
+        "gap": 1071.2000000000007,
+        "dir": "above"
+      },
+      {
+        "rank": 27,
+        "name": "徐佳琳",
+        "vote": 12180.6,
+        "team": "SNH/N2",
+        "gap": 867.6000000000004,
+        "dir": "above"
+      },
+      {
+        "rank": 28,
+        "name": "朱瑞缘",
+        "vote": 12149,
+        "team": "CKG/C",
+        "gap": 836,
+        "dir": "above"
+      },
+      {
+        "rank": 29,
+        "name": "陈珊玲",
+        "vote": 12145,
+        "team": "GNZ/Z",
+        "gap": 832,
+        "dir": "above"
+      },
+      {
+        "rank": 30,
+        "name": "王佳琪",
+        "vote": 12007.9,
+        "team": "BEJ/B",
+        "gap": 694.8999999999996,
+        "dir": "above"
+      },
+      {
+        "rank": 31,
+        "name": "曾雪婷",
+        "vote": 11941.2,
+        "team": "SNH/YBS",
+        "gap": 628.2000000000007,
+        "dir": "above"
+      },
+      {
+        "rank": 32,
+        "name": "叶凡",
+        "vote": 11861.1,
+        "team": "SNH/N2",
+        "gap": 548.1000000000004,
+        "dir": "above"
+      },
+      {
+        "rank": 33,
+        "name": "谭思慧",
+        "vote": 11452,
+        "team": "CGT/C2",
+        "gap": 139,
+        "dir": "above"
+      }
+    ],
+    "below": [
+      {
+        "rank": 35,
+        "name": "李婷",
+        "vote": 11305,
+        "team": "SNH/S2",
+        "gap": 8,
+        "dir": "below"
+      },
+      {
+        "rank": 36,
+        "name": "周童玥",
+        "vote": 11253.5,
+        "team": "SNH/S2",
+        "gap": 59.5,
+        "dir": "below"
+      },
+      {
+        "rank": 37,
+        "name": "吴志越",
+        "vote": 11220.9,
+        "team": "CKG/K",
+        "gap": 92.10000000000036,
+        "dir": "below"
+      },
+      {
+        "rank": 38,
+        "name": "方琪",
+        "vote": 11155.4,
+        "team": "GNZ/G",
+        "gap": 157.60000000000036,
+        "dir": "below"
+      },
+      {
+        "rank": 39,
+        "name": "刘小涵",
+        "vote": 10697.3,
+        "team": "SNH/X",
+        "gap": 615.7000000000007,
+        "dir": "below"
+      },
+      {
+        "rank": 40,
+        "name": "康楚翊",
+        "vote": 10625.4,
+        "team": "SNH/H2",
+        "gap": 687.6000000000004,
+        "dir": "below"
+      },
+      {
+        "rank": 41,
+        "name": "温若其",
+        "vote": 10549.1,
+        "team": "SNH/H2",
+        "gap": 763.8999999999996,
+        "dir": "below"
+      },
+      {
+        "rank": 42,
+        "name": "吕思琪",
+        "vote": 10493.4,
+        "team": "GNZ/N3",
+        "gap": 819.6000000000004,
+        "dir": "below"
+      },
+      {
+        "rank": 43,
+        "name": "阙佳慧",
+        "vote": 10064.5,
+        "team": "SNH/H2",
+        "gap": 1248.5,
+        "dir": "below"
+      },
+      {
+        "rank": 44,
+        "name": "程妤涵",
+        "vote": 10050.3,
+        "team": "CGT/G2",
+        "gap": 1262.7000000000007,
+        "dir": "below"
+      }
+    ],
+    "fans": [
+      {
+        "user_name": "霞姬👛",
+        "user_id": "5YfPY9ZkI6NJWKwPzw+h7SHg/TfDmbD9Umhf1CrrP6s=",
+        "vote": "1685.20",
+        "fisrt": "张倩",
+        "percent": "99%"
+      },
+      {
+        "user_name": "蓝蓝每天睡饱饱",
+        "user_id": "iB7ooWlhQZh9hCmIekFbODmt+Y9SdQzsyQkZum9U1s0=",
+        "vote": "1219.00",
+        "fisrt": "张倩",
+        "percent": "100%"
+      },
+      {
+        "user_name": "顺顺👛（惔惔の沋喐、、、",
+        "user_id": "CJJrCCa0WG6n5ooiEjrEi5uoykhW0fsCBwdQc23XyUE=",
+        "vote": "1105.00",
+        "fisrt": "张倩",
+        "percent": "100%"
+      }
+    ],
+    "zq999Count": 2,
+    "zqHour": null
+  },
+  "s2": {
+    "members": [
+      {
+        "rank": 13,
+        "member": {
+          "cy_id": "5bhAx66KD3ZUJUXRd9Qbv3ZJFxIl6anC+hciFMPYWhE=",
+          "nickname": "刘诗彤",
+          "vote": "16091.40",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "13",
+          "color": "91cdeb"
+        },
+        "vote": 16091.4
+      },
+      {
+        "rank": 19,
+        "member": {
+          "cy_id": "DpmytAcoV79NGD3yBOZT/Zl00BcDaAK4yd2td3NyzYU=",
+          "nickname": "由淼",
+          "vote": "14045.70",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "19",
+          "color": "91cdeb"
+        },
+        "vote": 14045.7
+      },
+      {
+        "rank": 25,
+        "member": {
+          "cy_id": "kHSN313x9+rm2+ap+/hZE1W2gaw6/rDAMs5f6LtiLro=",
+          "nickname": "杨心渝",
+          "vote": "12553.40",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "25",
+          "color": "91cdeb"
+        },
+        "vote": 12553.4
+      },
+      {
+        "rank": 34,
+        "member": {
+          "cy_id": "zqNtDBoyGbqSNQF96le1IAbsgqN1526Tb9LUWkQcLpc=",
+          "nickname": "张倩",
+          "vote": "11313.00",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "34",
+          "color": "91cdeb"
+        },
+        "vote": 11313
+      },
+      {
+        "rank": 35,
+        "member": {
+          "cy_id": "v0ssa9bXG2xa7g2A0ONBXAmD6/apGfbNJdruA4YKfnY=",
+          "nickname": "李婷",
+          "vote": "11305.00",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "35",
+          "color": "91cdeb"
+        },
+        "vote": 11305
+      },
+      {
+        "rank": 36,
+        "member": {
+          "cy_id": "MIEmAbwYxIxufmk6IJFdT4BfIqPoauwgdwNFpfsOoos=",
+          "nickname": "周童玥",
+          "vote": "11253.50",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "36",
+          "color": "91cdeb"
+        },
+        "vote": 11253.5
+      },
+      {
+        "rank": 47,
+        "member": {
+          "cy_id": "QVwUFz+qX22hTxhvSp5OVd6cEklk50PxRXhtj1zTIic=",
+          "nickname": "柳雨呈",
+          "vote": "9598.10",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "47",
+          "color": "91cdeb"
+        },
+        "vote": 9598.1
+      },
+      {
+        "rank": 61,
+        "member": {
+          "cy_id": "dgCpiQhFa1FdEw3oPGS87NxD5Bzvdy9Oh/sDLSVSsiM=",
+          "nickname": "宁轲",
+          "vote": "6970.60",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "61",
+          "color": "91cdeb"
+        },
+        "vote": 6970.6
+      },
+      {
+        "rank": 64,
+        "member": {
+          "cy_id": "USwGhsp9YgjdzSpTfl+qGysB9vLnRgp42/8NHz3xff0=",
+          "nickname": "蒋夏羽",
+          "vote": "6042.20",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "64",
+          "color": "91cdeb"
+        },
+        "vote": 6042.2
+      },
+      {
+        "rank": 81,
+        "member": {
+          "cy_id": "j9L5nKjV1lBsBKLiFReJ6lsyHxtUQcXYxBjgH/dpjl0=",
+          "nickname": "芦馨怡",
+          "vote": "3838.80",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "81",
+          "color": "91cdeb"
+        },
+        "vote": 3838.8
+      },
+      {
+        "rank": 85,
+        "member": {
+          "cy_id": "XwUf1WEqY/B1vaBVhpftK0pla1Xm/IVv0OQ3Dgb8s90=",
+          "nickname": "张雷雷",
+          "vote": "3080.50",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "85",
+          "color": "91cdeb"
+        },
+        "vote": 3080.5
+      },
+      {
+        "rank": 96,
+        "member": {
+          "cy_id": "PxWewnrRcoECWerQeiNxAsWjmQYTdJKKXB108C7xYKY=",
+          "nickname": "盛乐",
+          "vote": "2276.60",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "96",
+          "color": "91cdeb"
+        },
+        "vote": 2276.6
+      },
+      {
+        "rank": 114,
+        "member": {
+          "cy_id": "cErEQrJhdP/zdbb5u8WWuxvyCIs2AE/4PdHmZgDugSw=",
+          "nickname": "刘婧阳",
+          "vote": "1543.00",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "114",
+          "color": "91cdeb"
+        },
+        "vote": 1543
+      },
+      {
+        "rank": 133,
+        "member": {
+          "cy_id": "oz8F4Xp+pL8N4KewQQByhHPLgNPVP3N8nOukAIIrbfI=",
+          "nickname": "曹可甜",
+          "vote": "990.20",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "133",
+          "color": "91cdeb"
+        },
+        "vote": 990.2
+      },
+      {
+        "rank": 178,
+        "member": {
+          "cy_id": "uv7rq7gR/qnOUMhOa1xiPC2gIBlfV4Y6ByctUPwrbgY=",
+          "nickname": "闫明筠",
+          "vote": "227.00",
+          "gname": "SNH",
+          "tname": "S2",
+          "rank": "178",
+          "color": "91cdeb"
+        },
+        "vote": 227
+      }
+    ],
+    "total": 111129.00000000001,
+    "avg": 7408.600000000001,
+    "count": 15,
+    "s2Rank": 5,
+    "teamArr": [
+      {
+        "name": "SNH/X",
+        "count": 16,
+        "total": 245557.5,
+        "avg": 15347.34,
+        "top16": 5
+      },
+      {
+        "name": "SNH/N2",
+        "count": 11,
+        "total": 146661.5,
+        "avg": 13332.86,
+        "top16": 3
+      },
+      {
+        "name": "GNZ/Z",
+        "count": 10,
+        "total": 86583.5,
+        "avg": 8658.35,
+        "top16": 1
+      },
+      {
+        "name": "SNH/H2",
+        "count": 15,
+        "total": 113310.4,
+        "avg": 7554.03,
+        "top16": 2
+      },
+      {
+        "name": "SNH/S2",
+        "count": 15,
+        "total": 111129,
+        "avg": 7408.6,
+        "top16": 1
+      },
+      {
+        "name": "GNZ/G",
+        "count": 13,
+        "total": 92065.7,
+        "avg": 7081.98,
+        "top16": 1
+      },
+      {
+        "name": "BEJ/E",
+        "count": 13,
+        "total": 70128.2,
+        "avg": 5394.48,
+        "top16": 2
+      },
+      {
+        "name": "GNZ/N3",
+        "count": 13,
+        "total": 63655.7,
+        "avg": 4896.59,
+        "top16": 1
+      },
+      {
+        "name": "BEJ/B",
+        "count": 11,
+        "total": 35956.1,
+        "avg": 3268.74,
+        "top16": 0
+      },
+      {
+        "name": "CKG/K",
+        "count": 15,
+        "total": 45225.2,
+        "avg": 3015.01,
+        "top16": 0
+      },
+      {
+        "name": "BEJ/YBS",
+        "count": 6,
+        "total": 17513.1,
+        "avg": 2918.85,
+        "top16": 0
+      },
+      {
+        "name": "CKG/C",
+        "count": 14,
+        "total": 40458.1,
+        "avg": 2889.86,
+        "top16": 0
+      },
+      {
+        "name": "CGT/C2",
+        "count": 12,
+        "total": 29411.6,
+        "avg": 2450.97,
+        "top16": 0
+      },
+      {
+        "name": "CGT/G2",
+        "count": 12,
+        "total": 25987.1,
+        "avg": 2165.59,
+        "top16": 0
+      },
+      {
+        "name": "SNH/YBS",
+        "count": 12,
+        "total": 23779,
+        "avg": 1981.58,
+        "top16": 0
+      },
+      {
+        "name": "GNZ/YBS",
+        "count": 12,
+        "total": 14168.3,
+        "avg": 1180.69,
+        "top16": 0
+      },
+      {
+        "name": "CGT/YBS",
+        "count": 12,
+        "total": 4323.8,
+        "avg": 360.32,
+        "top16": 0
+      },
+      {
+        "name": "CKG/YBS",
+        "count": 5,
+        "total": 1039.7,
+        "avg": 207.94,
+        "top16": 0
+      }
+    ],
+    "risk": [
+      {
+        "rank": 13,
+        "name": "刘诗彤",
+        "vote": 16091.4,
+        "gapAbove": 2046.300000000001,
+        "gapBelow": 24.399999999999636,
+        "status": "选拔组"
+      },
+      {
+        "rank": 19,
+        "name": "由淼",
+        "vote": 14045.7,
+        "gapAbove": 245.89999999999964,
+        "gapBelow": 28.100000000000364,
+        "status": "UG"
+      },
+      {
+        "rank": 25,
+        "name": "杨心渝",
+        "vote": 12553.4,
+        "gapAbove": 62.80000000000109,
+        "gapBelow": 169.1999999999989,
+        "status": "UG"
+      },
+      {
+        "rank": 34,
+        "name": "张倩",
+        "vote": 11313,
+        "gapAbove": 139,
+        "gapBelow": 8,
+        "status": "NG"
+      },
+      {
+        "rank": 35,
+        "name": "李婷",
+        "vote": 11305,
+        "gapAbove": 8,
+        "gapBelow": 51.5,
+        "status": "NG"
+      },
+      {
+        "rank": 36,
+        "name": "周童玥",
+        "vote": 11253.5,
+        "gapAbove": 51.5,
+        "gapBelow": 32.600000000000364,
+        "status": "NG"
+      },
+      {
+        "rank": 47,
+        "name": "柳雨呈",
+        "vote": 9598.1,
+        "gapAbove": 189.10000000000036,
+        "gapBelow": 6.100000000000364,
+        "status": "NG"
+      },
+      {
+        "rank": 61,
+        "name": "宁轲",
+        "vote": 6970.6,
+        "gapAbove": 46,
+        "gapBelow": 120.20000000000073,
+        "status": "FG"
+      },
+      {
+        "rank": 64,
+        "name": "蒋夏羽",
+        "vote": 6042.2,
+        "gapAbove": 583.1000000000004,
+        "gapBelow": 68.80000000000018,
+        "status": "FG"
+      },
+      {
+        "rank": 81,
+        "name": "芦馨怡",
+        "vote": 3838.8,
+        "gapAbove": 89,
+        "gapBelow": 211.5,
+        "status": "圈外"
+      },
+      {
+        "rank": 85,
+        "name": "张雷雷",
+        "vote": 3080.5,
+        "gapAbove": 346.4000000000001,
+        "gapBelow": 20.09999999999991,
+        "status": "圈外"
+      },
+      {
+        "rank": 96,
+        "name": "盛乐",
+        "vote": 2276.6,
+        "gapAbove": 7.300000000000182,
+        "gapBelow": 98.19999999999982,
+        "status": "圈外"
+      },
+      {
+        "rank": 114,
+        "name": "刘婧阳",
+        "vote": 1543,
+        "gapAbove": 31.90000000000009,
+        "gapBelow": 66.70000000000005,
+        "status": "圈外"
+      },
+      {
+        "rank": 133,
+        "name": "曹可甜",
+        "vote": 990.2,
+        "gapAbove": 1.099999999999909,
+        "gapBelow": 70.5,
+        "status": "圈外"
+      },
+      {
+        "rank": 178,
+        "name": "闫明筠",
+        "vote": 227,
+        "gapAbove": 23.80000000000001,
+        "gapBelow": 10.099999999999994,
+        "status": "圈外"
+      }
+    ]
+  },
+  "totVotes": 1166953,
+  "allMCount": 217
+}

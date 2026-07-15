@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>量化指数</title><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e1a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.hdr{background:linear-gradient(135deg,#0f1429,#1a1040);border-bottom:1px solid rgba(102,126,234,.2);padding:24px;text-align:center}
+.hdr h1{font-size:24px;font-weight:700;background:linear-gradient(135deg,#667eea,#764ba2,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.hdr p{color:#8899bb;font-size:12px}.c{max-width:1200px;margin:0 auto;padding:12px}.s{margin-bottom:14px}.st{font-size:13px;font-weight:600;color:#667eea;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;border-left:3px solid #667eea;padding-left:10px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}
+.cd{background:linear-gradient(180deg,rgba(20,25,50,.9),rgba(15,18,35,.95));border:1px solid rgba(102,126,234,.12);border-radius:8px;padding:12px}
+.cd h3{font-size:13px;font-weight:600;color:#c0c8e0;margin-bottom:8px}
+.ch{width:100%;height:270px}.ch-sm{height:190px}.full{grid-column:1/-1}
+table{width:100%;border-collapse:collapse;font-size:11px}th{color:#667eea;font-weight:600;padding:5px 6px;border-bottom:1px solid rgba(102,126,234,.2);text-align:left;font-size:10px;text-transform:uppercase}td{padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.04);color:#b0b8d0}.nm{font-weight:600;color:#fff}
+.sc{background:linear-gradient(135deg,rgba(102,126,234,.12),rgba(118,75,162,.08));border:1px solid rgba(102,126,234,.15);border-radius:8px;padding:10px;text-align:center}.sc .n{font-size:18px;font-weight:700;color:#fff}.sc .l{font-size:10px;color:#8899bb;margin-top:2px}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px}
+.bd{display:inline-block;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:600}.bd.hi{background:rgba(238,90,111,.15);color:#ee5a6f}.bd.md{background:rgba(242,153,74,.15);color:#f2994a}.bd.lo{background:rgba(56,239,125,.15);color:#38ef7d}
+.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600;margin-right:2px}.snh{background:rgba(102,126,234,.2);color:#667eea}.gnz{background:rgba(56,239,125,.15);color:#38ef7d}.bej{background:rgba(242,153,74,.15);color:#f2994a}.ckg{background:rgba(238,90,111,.15);color:#ee5a6f}.cgt{background:rgba(79,172,254,.15);color:#4facfe}
+.lo{text-align:center;color:#445;font-size:11px;padding:16px;margin-top:12px}
+@media(max-width:640px){.g{grid-template-columns:1fr}.hdr h1{font-size:20px}}
+</style></head><body>
+<div class="hdr"><h1>量化指数 Dashboard</h1><p>❖ LIVE 实时加载</p></div>
+<div class="c" id="app"><div class="lo" id="loading">加载中...</div></div>
+<div class="lo">数据来源: xox48.top</div>
+<script>(async function(){var el=document.getElementById("loading");
+var API="https://xox48.top",fetchOpts={headers:{"Accept":"application/json"}};
+try{
+var [mR,fR,tR,hR]=await Promise.all([
+  fetch(API+"/Api/vote2024",fetchOpts).then(function(r){return r.json()}).then(function(d){return d.data.list}),
+  fetch(API+"/Api/fansrank",fetchOpts).then(function(r){return r.json()}).then(function(d){return d.data.list}),
+  fetch(API+"/Api/vote999",fetchOpts).then(function(r){return r.json()}).then(function(d){return d.data.list}),
+  fetch(API+"/Api/hour_rank",fetchOpts).then(function(r){return r.json()}).then(function(d){return d.data.prev})
+]);
+var members=mR.slice().sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)});
+var fans=fR.slice().sort(function(a,b){return parseFloat(b.vote)-parseFloat(a.vote)});
+var vote999=tR;
+var hourRank=hR;
+var tot=members.reduce(function(s,m){return s+parseFloat(m.vote)},0);
+var votes=members.map(function(m){return parseFloat(m.vote)});
+var gv=[].concat(votes).sort(function(a,b){return a-b}),gn=gv.length,gs=gv.reduce(function(s,v){return s+v},0),gi=0;for(var i=0;i<gn;i++)gi+=(i+1)*gv[i];var gini=((2*gi-(gn+1)*gs)/(gn*gs)).toFixed(4);
+var fv=fans.map(function(f){return parseFloat(f.vote)}).sort(function(a,b){return a-b}),fn=fv.length,fs=fv.reduce(function(s,v){return s+v},0),fi=0;for(var i=0;i<fn;i++)fi+=(i+1)*fv[i];var giniFan=((2*fi-(fn+1)*fs)/(fn*fs)).toFixed(4);
+var cum=0,prN=0;for(var i=0;i<votes.length;i++){cum+=votes[i];if(cum>=tot*0.8){prN=i+1;break}}
+var hhi=0;members.slice(0,10).forEach(function(m){var sh=parseFloat(m.vote)/tot;hhi+=sh*sh});hhi=Math.round(hhi*10000);
+var gs={};members.forEach(function(m){var v=parseFloat(m.vote),r=parseInt(m.rank);if(!gs[m.gname])gs[m.gname]={c:0,t:0,t16:0,t7:0};gs[m.gname].c++;gs[m.gname].t+=v;if(r<=16)gs[m.gname].t16++;if(r<=7)gs[m.gname].t7++});
+var ts={};members.forEach(function(m){var k=m.gname+"/"+m.tname,v=parseFloat(m.vote);if(!ts[k])ts[k]={c:0,t:0};ts[k].c++;ts[k].t+=v});
+var teamArr=Object.keys(ts).map(function(k){return{name:k,avg:Math.round(ts[k].t/ts[k].c*100)/100,c:ts[k].c,t:Math.round(ts[k].t*100)/100}}).sort(function(a,b){return b.avg-a.avg}).slice(0,15);
+var groupArr=Object.keys(gs).map(function(k){return{n:k,c:gs[k].c,t:gs[k].t}});
+var c999={};vote999.forEach(function(r){if(!c999[r.cy_name])c999[r.cy_name]=0;c999[r.cy_name]++});var top999=Object.keys(c999).map(function(k){return{n:k,c:c999[k]}}).sort(function(a,b){return b.c-a.c}).slice(0,10);
+var tfv=fans.reduce(function(s,f){return s+parseFloat(f.vote)},0);var ft20=(fans.slice(0,20).reduce(function(s,f){return s+parseFloat(f.vote)},0)/tfv*100).toFixed(1);
+var gaps=[];for(var i=0;i<members.length-1;i++){var g=parseFloat(members[i].vote)-parseFloat(members[i+1].vote);if(g>0)gaps.push({r:i+1,a:members[i].nickname,b:members[i+1].nickname,g:g})}gaps.sort(function(x,y){return x.g-y.g});var tight=gaps.slice(0,10);gaps.sort(function(x,y){return y.g-x.g});var wide=gaps.slice(0,10);
+var s7=votes.slice(0,7).reduce(function(s,v){return s+v},0);var s16=votes.slice(0,16).reduce(function(s,v){return s+v},0);
+var mc={SNH:"#667eea",GNZ:"#38ef7d",BEJ:"#f2994a",CKG:"#ee5a6f",CGT:"#4facfe"};
+var ctx=document.getElementById("app");
+var H=[];
+H.push('<div class="sum">');
+H.push('<div class="sc"><div class="n">'+members.length+'</div><div class="l">参选成员</div></div>');
+H.push('<div class="sc"><div class="n">'+(tot/10000).toFixed(1)+'万</div><div class="l">总票数</div></div>');
+H.push('<div class="sc"><div class="n">'+gini+'</div><div class="l">基尼系数</div></div>');
+H.push('<div class="sc"><div class="n">'+prN+'/'+members.length+'</div><div class="l">帕累托(80%票)</div></div>');
+H.push('<div class="sc"><div class="n">'+(votes[0]/10000).toFixed(1)+'万</div><div class="l">最高票</div></div>');
+H.push('<div class="sc"><div class="n">'+fans.length+'</div><div class="l">粉丝数</div></div>');
+H.push('</div>');
+H.push('<div class="s"><div class="st">不平等度与集中度</div><div class="g">');
+var gvl=parseFloat(gini),lvl=gvl>0.65?"极高":gvl>0.5?"高":"中",cls=gvl>0.65?"hi":gvl>0.5?"md":"lo";
+H.push('<div class="cd"><h3>基尼系数 (Gini)</h3><div id="cg1" class="ch-sm"></div>');
+H.push('<div style="text-align:center;margin-top:4px"><span class="bd '+cls+'">'+gini+' — '+lvl+'</span></div>');
+H.push('<div style="margin-top:6px;font-size:11px;color:#8899bb;text-align:center">0=绝对平均 · 1=绝对集中<br>本届 '+gini+'，头部效应明显</div></div>');
+H.push('<div class="cd"><h3>帕累托分布</h3><div id="cg2" class="ch-sm"></div>');
+H.push('<div style="margin-top:6px;font-size:11px;color:#8899bb;text-align:center">前 '+prN+' 人 ('+(prN/members.length*100).toFixed(1)+'%) 掌握 80% 总票数</div></div>');
+H.push('<div class="cd"><h3>赫芬达尔指数 (HHI)</h3><div id="cg3" class="ch-sm"></div></div>');
+H.push('<div class="cd full"><h3>圈线 & 分层指标</h3><div id="cg4" class="ch"></div></div>');
+H.push('</div></div>');
+H.push('<div class="s"><div class="st">竞争态势</div><div class="g">');
+H.push('<div class="cd" style="grid-column:span 1"><h3>最激烈 · 最小票差 Top 10</h3><table><tr><th>位次</th><th>上位</th><th>下位</th><th>差</th></tr>');
+for(var i=0;i<tight.length;i++){var g=tight[i];H.push('<tr><td><span style="color:#667eea">#'+g.r+'</span></td><td>'+g.a+'</td><td>'+g.b+'</td><td class="nm">'+g.g.toFixed(1)+'</td></tr>')}
+H.push('</table></div>');
+H.push('<div class="cd" style="grid-column:span 1"><h3>最稳 · 最大票差 Top 10</h3><table><tr><th>位次</th><th>上位</th><th>下位</th><th>差</th></tr>');
+for(var i=0;i<wide.length;i++){var g=wide[i];H.push('<tr><td><span style="color:#667eea">#'+g.r+'</span></td><td>'+g.a+'</td><td>'+g.b+'</td><td class="nm">'+g.g.toFixed(0)+'</td></tr>')}
+H.push('</table></div></div></div>');
+H.push('<div class="s"><div class="st">队伍效率</div><div class="g">');
+H.push('<div class="cd"><h3>集团权重指数</h3><div id="cg5" class="ch"></div></div>');
+H.push('<div class="cd"><h3>队伍人均票数</h3><div id="cg6" class="ch"></div></div>');
+H.push('</div></div>');
+H.push('<div class="s"><div class="st">粉丝分析</div><div class="g">');
+H.push('<div class="cd"><h3>粉丝集中度</h3><div id="cg7" class="ch-sm"></div>');
+H.push('<div style="margin-top:6px;font-size:11px;color:#8899bb;text-align:center">Top20粉丝: '+ft20+'%<br>粉丝基尼: '+giniFan+'</div></div>');
+H.push('<div class="cd"><h3>999礼物排行</h3><div id="cg8" class="ch-sm"></div></div>');
+H.push('</div></div>');
+H.push('<div class="s"><div class="st">完整指标</div><div class="g"><div class="cd full" style="overflow-x:auto"><table><tr><th>类别</th><th>指标</th><th>数值</th></tr>');
+var rows=[["不平等","基尼系数",gini],["不平等","Top1占比",(votes[0]/tot*100).toFixed(1)+"%"],["不平等","Top7(神七)占比",(s7/tot*100).toFixed(1)+"%"],["不平等","Top16(选拔)占比",(s16/tot*100).toFixed(1)+"%"],["不平等","HHI",hhi],["不平等","帕累托",prN+"人("+(prN/members.length*100).toFixed(1)+"%)"],["圈线","神七圈",votes[6].toLocaleString()+"票"],["圈线","选拔组圈",votes[15].toLocaleString()+"票"],["圈线","UG圈",votes[31].toLocaleString()+"票"],["圈线","NG圈",votes[47].toLocaleString()+"票"],["竞争","最小票差",tight[0].g.toFixed(1)+"票"],["竞争","最大票差",wide[0].g.toFixed(0)+"票"],["粉丝","粉丝基尼",giniFan],["粉丝","Top20占比",ft20+"%"]];
+for(var i=0;i<rows.length;i++){H.push('<tr><td style="color:#667eea">'+rows[i][0]+'</td><td>'+rows[i][1]+'</td><td class="nm">'+rows[i][2]+'</td></tr>')}
+H.push('</table></div></div></div>');
+H.push('<div class="s"><div class="st">集团数据</div><div class="g"><div class="cd full" style="overflow-x:auto"><table><tr><th>集团</th><th>总票</th><th>占比</th><th>人数</th><th>人均</th><th>权重</th><th>选拔</th><th>神七</th></tr>');
+var gArr=Object.keys(gs).map(function(k){var s=gs[k];return{n:k,v:s.t,sh:(s.t/tot*100).toFixed(1),c:s.c,avg:Math.round(s.t/s.c),pi:((s.t/s.c)/(tot/members.length)).toFixed(2),t16:s.t16,t7:s.t7}}).sort(function(a,b){return b.v-a.v});
+for(var i=0;i<gArr.length;i++){var g=gArr[i];H.push('<tr><td><span class="tag '+g.n.toLowerCase()+'">'+g.n+'</span></td><td class="nm">'+(g.v/10000).toFixed(1)+'万</td><td>'+g.sh+'%</td><td>'+g.c+'人</td><td class="nm">'+g.avg.toLocaleString()+'</td><td class="nm">'+g.pi+'</td><td>'+g.t16+'人</td><td>'+g.t7+'人</td></tr>')}
+H.push('</table></div></div></div>');
+ctx.innerHTML=H.join("");
+var ec=echarts;
+(function(){var c=ec.init(document.getElementById("cg1"));c.setOption({series:[{type:"gauge",startAngle:210,endAngle:-30,min:0,max:1,pointer:{show:false},progress:{show:true,width:12,roundCap:true,itemStyle:{color:gini>.65?"#ee5a6f":gini>.5?"#f2994a":"#38ef7d"}},axisLine:{lineStyle:{width:12,color:[[.35,"#38ef7d"],[.5,"#f2c94c"],[.65,"#f2994a"],[1,"#ee5a6f"]]}},axisTick:{show:false},splitLine:{show:false},axisLabel:{show:true,distance:20,fontSize:10,color:"#8899bb"},detail:{show:true,fontSize:28,fontWeight:"bold",color:"#fff",offsetCenter:[0,"60%"],formatter:gini},title:{show:true,offsetCenter:[0,"85%"],fontSize:11,color:"#8899bb"},data:[{value:parseFloat(gini),name:"基尼系数"}]}]})})();
+(function(){var c=0,pp=[];var vs=[].concat(votes).sort(function(a,b){return b-a});var t=vs.reduce(function(s,x){return s+x},0);for(var i=0;i<vs.length;i++){c+=vs[i];pp.push({r:i+1,p:c/t*100})}var ch=ec.init(document.getElementById("cg2"));ch.setOption({tooltip:{trigger:"axis",formatter:function(p){return"前"+p[0].data.r+"名<br/>累计: <b>"+p[0].data.p.toFixed(1)+"%</b>"}},grid:{left:10,right:20,top:20,bottom:25,containLabel:true},xAxis:{type:"value",name:"排名",axisLabel:{fontSize:10,color:"#8899bb"}},yAxis:{type:"value",name:"累计%",max:100,axisLabel:{fontSize:10,color:"#8899bb"}},series:[{type:"line",data:pp.map(function(d){return[d.r,parseFloat(d.p.toFixed(1))]}),smooth:false,symbolSize:2,lineStyle:{color:"#667eea",width:2},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},markLine:{silent:true,lineStyle:{color:"#ee5a6f",type:"dashed"},data:[{yAxis:80,label:{color:"#ee5a6f",fontSize:10,formatter:"80%线"}}]},markPoint:{symbolSize:40,data:[{coord:[prN,80],symbol:"pin",itemStyle:{color:"#f2994a"},label:{color:"#fff",fontSize:9,fontWeight:"bold",formatter:prN+"人"}}]}}]})})();
+(function(){var c=ec.init(document.getElementById("cg3"));c.setOption({series:[{type:"gauge",startAngle:210,endAngle:-30,min:0,max:3000,pointer:{show:false},progress:{show:true,width:10,roundCap:true,itemStyle:{color:"#4facfe"}},axisLine:{lineStyle:{width:10,color:[[1000/3000,"#38ef7d"],[2500/3000,"#f2c94c"],[1,"#ee5a6f"]]}},axisTick:{show:false},splitLine:{show:false},axisLabel:{show:true,distance:15,fontSize:9,color:"#8899bb"},detail:{show:true,fontSize:22,fontWeight:"bold",color:"#4facfe",offsetCenter:[0,"55%"],formatter:hhi},title:{show:true,offsetCenter:[0,"80%"],fontSize:11,color:"#8899bb"},data:[{value:hhi,name:"×10000"}]}]})})();
+(function(){var t=[{name:"1位(冠军)",value:votes[0],color:"#ffd700"},{name:"神七圈(#7)",value:votes[6],color:"#ee5a6f"},{name:"选拔圈(#16)",value:votes[15],color:"#f2994a"},{name:"UG圈(#32)",value:votes[31],color:"#38ef7d"},{name:"NG圈(#48)",value:votes[47],color:"#4facfe"}];var c=ec.init(document.getElementById("cg4"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:10,right:50,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>9999?(v/10000).toFixed(2)+"万":v}}},yAxis:{type:"category",data:[t[4].name,t[3].name,t[2].name,t[1].name,t[0].name],axisLabel:{fontSize:13,color:"#c0c8e0",fontWeight:"bold"}},series:[{type:"bar",data:[t[4],t[3],t[2],t[1],t[0]].map(function(d){return{value:d.value,itemStyle:{color:d.color,borderRadius:[0,6,6,0]}}}),barMaxWidth:36,label:{show:true,position:"right",fontSize:12,fontWeight:"bold",color:"#fff",formatter:function(p){return(p.value/10000).toFixed(2)+"万"}}}]})})();
+(function(){var avgAll=votes.reduce(function(s,x){return s+x},0)/217;var d=groupArr.map(function(g){return{name:g.n,value:Math.round(g.t/g.c/avgAll*100)/100}}).sort(function(a,b){return b.value-a.value});var c=ec.init(document.getElementById("cg5"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){return"<b>"+p[0].name+"</b><br/>指数: <b>"+p[0].value.toFixed(2)+"</b>"}},grid:{left:10,right:20,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},yAxis:{type:"category",data:d.map(function(x){return x.name}).reverse(),axisLabel:{fontSize:13,fontWeight:"bold",color:"#c0c8e0"}},series:[{type:"bar",data:d.map(function(x){return{value:x.value,itemStyle:{color:mc[x.name]||"#667eea",borderRadius:[0,6,6,0]}}}).reverse(),barMaxWidth:32,markLine:{silent:true,lineStyle:{color:"rgba(255,255,255,.15)",type:"dashed"},label:{color:"#8899bb",fontSize:10},data:[{xAxis:1}]},label:{show:true,position:"right",fontSize:12,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value.toFixed(2)+"x"}}}]})})();
+(function(){var c=ec.init(document.getElementById("cg6"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){return"<b>"+p[0].name+"</b><br/>人均: <b>"+p[0].value.toLocaleString()+"</b>"}},grid:{left:10,right:40,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:10,color:"#8899bb",formatter:function(v){return v>9999?(v/10000).toFixed(0)+"万":v}}},yAxis:{type:"category",data:[].concat(teamArr).reverse().map(function(t){return t.name}),axisLabel:{fontSize:10,color:"#b0b8d0"}},series:[{type:"bar",data:[].concat(teamArr).reverse().map(function(t){var g=t.name.split("/")[0];return{value:t.avg,itemStyle:{color:mc[g]||"#667eea",borderRadius:[0,6,6,0]},c:t.c}}),barMaxWidth:18,label:{show:true,position:"right",fontSize:9,color:"#8899bb",formatter:function(p){return p.value>9999?(p.value/10000).toFixed(1)+"万":p.value}}}]})})();
+(function(){var c=ec.init(document.getElementById("cg7"));c.setOption({series:[{type:"gauge",startAngle:210,endAngle:-30,min:0,max:1,pointer:{show:false},progress:{show:true,width:10,roundCap:true,itemStyle:{color:parseFloat(giniFan)>.5?"#f093fb":parseFloat(giniFan)>.35?"#f2994a":"#38ef7d"}},axisLine:{lineStyle:{width:10,color:[[.35,"#38ef7d"],[.5,"#f2c94c"],[1,"#f093fb"]]}},axisTick:{show:false},splitLine:{show:false},axisLabel:{show:true,distance:15,fontSize:9,color:"#8899bb"},detail:{show:true,fontSize:22,fontWeight:"bold",color:"#f093fb",offsetCenter:[0,"55%"],formatter:giniFan},title:{show:true,offsetCenter:[0,"80%"],fontSize:11,color:"#8899bb"},data:[{value:parseFloat(giniFan),name:"粉丝基尼系数"}]}]})})();
+(function(){var c=ec.init(document.getElementById("cg8"));c.setOption({tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:10,right:20,top:20,bottom:30,containLabel:true},xAxis:{type:"value",axisLabel:{fontSize:10,color:"#8899bb"}},yAxis:{type:"category",data:[].concat(top999).reverse().map(function(d){return d.n}),axisLabel:{fontSize:10,color:"#b0b8d0"}},series:[{type:"bar",data:[].concat(top999).reverse().map(function(d){var cl=d.c>=15?"#ee5a6f":d.c>=10?"#f2994a":"#667eea";return{value:d.c,itemStyle:{color:cl,borderRadius:[0,6,6,0]}}}),barMaxWidth:18,label:{show:true,position:"right",fontSize:11,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value+"次"}}}]})})();
+el.textContent="";
+}catch(e){el.innerHTML="<p style=color:#ee5a6f>加载失败: "+e.message+"</p>"}})();
+</script></body></html>
