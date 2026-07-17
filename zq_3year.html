@@ -1,1 +1,176 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>张倩 三年对比</title><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script><style>body{background:#0a0e1a;color:#e0e0e0;font-family:sans-serif;padding:0;margin:0}.hdr{background:linear-gradient(135deg,#0f1429,#1a1040);border-bottom:1px solid rgba(102,126,234,.2);padding:20px;text-align:center}.hdr h1{font-size:22px;font-weight:700;background:linear-gradient(135deg,#667eea,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}.hdr p{color:#8899bb;font-size:12px}.c{max-width:1300px;margin:0 auto;padding:10px}.s{margin-bottom:14px}.st{font-size:13px;font-weight:600;color:#667eea;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;border-left:3px solid #667eea;padding-left:10px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:10px}.cd{background:linear-gradient(180deg,rgba(20,25,50,.9),rgba(15,18,35,.95));border:1px solid rgba(102,126,234,.12);border-radius:10px;padding:14px}.cd h3{font-size:14px;font-weight:600;color:#c0c8e0;margin-bottom:10px}.ch{width:100%;height:300px}.ch-sm{height:220px}.ch-lg{height:350px}.full{grid-column:1/-1}.half{grid-column:span 1}.sc{background:linear-gradient(135deg,rgba(102,126,234,.12),rgba(118,75,162,.08));border:1px solid rgba(102,126,234,.15);border-radius:8px;padding:10px;text-align:center}.sc .n{font-size:18px;font-weight:700;color:#fff}.sc .l{font-size:10px;color:#8899bb;margin-top:2px}.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:10px}.yc{display:inline-block;padding:1px 6px;border-radius:4px;font-size:11px;font-weight:600;margin-right:3px}.y24{background:#4facfe33;color:#4facfe}.y25{background:#f2994a33;color:#f2994a}.y26{background:#f093fb33;color:#f093fb}.ft{text-align:center;color:#445;font-size:11px;padding:16px;margin-top:12px}@media(max-width:640px){.g{grid-template-columns:1fr}.hdr h1{font-size:18px}}</style></head><body><div class="hdr"><h1>张倩 · 三年总选数据对比</h1><p>2024 → 2025 → 2026 · 排名 · 粉丝 · 礼物</p></div><div class="c" id="app"></div><div class="ft">数据来源: xox48.top</div><script>window.onerror=function(m,u,l){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>JS错误:</b> "+m+"</div>"};try{var E={"2024":{"rank":61,"score":8459.7,"fansCount":258,"fansTotal":8459.700000000037,"top1Name":"顺 顺","top1Vote":2308,"top5Sum":5774.9,"top10Sum":7147.4,"top20Sum":7677.099999999999,"gini":"0.9351"},"2025":{"rank":45,"score":16293.6,"fansCount":308,"fansTotal":16293.60000000003,"top1Name":"顺 顺","top1Vote":3214,"top5Sum":10184.1,"top10Sum":12601.9,"top20Sum":14043.9,"gini":"0.9259"},"2026":{"rank":35,"score":11618.7,"fansCount":214,"fansTotal":11618.700000000017,"top1Name":"霞姬👛","top1Vote":1674.1,"top5Sum":5257.1,"top10Sum":7083.1,"top20Sum":9201.2,"gini":"0.8670"}};var es=E.summary,dist=E.dist,bl=E.bl,gt=E.groups,m3=E.members3y;var yc={2024:"#4facfe",2025:"#f2994a",2026:"#f093fb"};var ec=echarts,H=[],ctx=document.getElementById("app");function sum(arr){return arr.reduce(function(s,x){return s+x},0)}H.push('<div class="sum">');Y.forEach(function(y){var d=E[y];H.push('<div class="sc"><div class="n">#'+d.rank+'</div><div class="l">'+y+'年排名</div></div>')});H.push('</div><div class="sum">');Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+(E[y].score/10000).toFixed(2)+'万</div><div class="l">'+y+'年票数</div></div>')});H.push('</div><div class="sum">');Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+E[y].fansCount+'人</div><div class="l">'+y+'年粉丝</div></div>')});H.push('</div>');H.push('<div class="s"><div class="st">排名 &amp; 票数趋势</div><div class="g">');H.push('<div class="cd"><h3>排名变化 (折线图)</h3><div id="c1" class="ch-sm" style="height:180px;width:100%"></div></div>');H.push('<div class="cd"><h3>票数增长 (条形图)</h3><div id="c2" class="ch-sm" style="height:180px;width:100%"></div></div>');H.push('<div class="cd"><h3>粉丝数量 (条形图)</h3><div id="c3" class="ch-sm" style="height:180px;width:100%"></div></div>');H.push('<div class="cd"><h3>头部粉丝贡献 (折线图)</h3><div id="c4" class="ch-sm" style="height:180px;width:100%"></div></div>');H.push('</div></div>');H.push('<div class="s"><div class="st">粉丝 &amp; 礼物</div><div class="g">');H.push('<div class="cd"><h3>头号粉丝对比 (条形图)</h3><div id="c5" class="ch-sm" style="height:180px;width:100%"></div></div>');H.push('<div class="cd"><h3>粉丝集中度 (折线图)</h3><div id="c6" class="ch-sm" style="height:180px;width:100%"></div></div>');H.push('<div class="cd full"><h3>Top 粉丝对比 (条形图)</h3><div id="c7" class="ch" style="height:260px;width:100%"></div></div>');H.push('<div class="cd full"><h3>礼物构成 (堆叠条形图)</h3><div id="c8" class="ch" style="height:260px;width:100%"></div></div>');H.push('</div></div>');ctx.innerHTML=H.join("");try{ec.init(document.getElementById("c1")).setOption({xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},yAxis:{type:"value",inverse:true,min:30,max:65,axisLabel:{fontSize:11,color:"#8899bb"}},series:[{type:"line",data:Y.map(function(y){return{value:E[y].rank,itemStyle:{color:yc[y]},symbol:"circle",symbolSize:12}}),lineStyle:{color:"#667eea",width:2}}],grid:{left:10,right:10,top:20,bottom:20}});ec.init(document.getElementById("c2")).setOption({tooltip:{trigger:"axis"},xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(0)+"万":v}}},series:[{type:"bar",data:Y.map(function(y){return{value:E[y].score,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:48,label:{show:true,position:"top",fontSize:12,fontWeight:"bold",color:"#fff",formatter:function(p){return(p.value/10000).toFixed(2)+"万"}}}],grid:{left:10,right:10,top:20,bottom:30,containLabel:true}});ec.init(document.getElementById("c3")).setOption({tooltip:{trigger:"axis"},xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},series:[{type:"bar",data:Y.map(function(y){return{value:E[y].fansCount,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:48,label:{show:true,position:"top",fontSize:12,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value+"人"}}}],grid:{left:10,right:10,top:20,bottom:30,containLabel:true}});ec.init(document.getElementById("c4")).setOption({tooltip:{trigger:"axis"},legend:{data:["Top5","Top10","Top20"],textStyle:{color:"#8899bb",fontSize:10}},xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},yAxis:{type:"value",max:100,axisLabel:{fontSize:11,color:"#8899bb"}},series:[{name:"Top5",type:"line",data:Y.map(function(y){return{value:parseFloat((E[y].top5Sum/E[y].fansTotal*100).toFixed(1))}}),lineStyle:{color:"#f2994a"},symbol:"diamond",symbolSize:8},{name:"Top10",type:"line",data:Y.map(function(y){return{value:parseFloat((E[y].top10Sum/E[y].fansTotal*100).toFixed(1))}}),lineStyle:{color:"#f2c94c"},symbol:"diamond",symbolSize:8},{name:"Top20",type:"line",data:Y.map(function(y){return{value:parseFloat((E[y].top20Sum/E[y].fansTotal*100).toFixed(1))}}),lineStyle:{color:"#38ef7d"},symbol:"diamond",symbolSize:8}],grid:{left:10,right:10,top:30,bottom:20}});ec.init(document.getElementById("c5")).setOption({xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},yAxis:{type:"category",data:["2024","2025","2026"].reverse().map(function(y){return y+"\n"+E[y].top1Name}),axisLabel:{fontSize:12,color:"#c0c8e0"}},series:[{type:"bar",data:["2024","2025","2026"].reverse().map(function(y){var pct=(E[y].top1Vote/E[y].score*100).toFixed(1);return{value:E[y].top1Vote,itemStyle:{color:yc[y],borderRadius:[0,6,6,0]},pct:pct}}),barMaxWidth:28,label:{show:true,position:"right",fontSize:10,color:"#fff",formatter:function(p){return p.value.toLocaleString()+"票("+p.data.pct+"%)"}}}],grid:{left:120,right:30,top:10,bottom:20}});ec.init(document.getElementById("c6")).setOption({xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},yAxis:{type:"value",min:0.85,max:0.94,axisLabel:{fontSize:11,color:"#8899bb"}},series:[{type:"line",data:Y.map(function(y){return{value:parseFloat(E[y].gini),itemStyle:{color:yc[y]},symbol:"circle",symbolSize:10}}),lineStyle:{color:"#667eea",width:2},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(4)}}}],grid:{left:10,right:10,top:20,bottom:20}});var fn=[];Y.forEach(function(y){t10[y].forEach(function(f){if(!fn.some(function(n){return n===f.n}))fn.push(f.n)})});fn.sort(function(a,b){var ta=Y.reduce(function(s,y){var f=t10[y].find(function(x){return x.n===a});return s+(f?f.v:0)},0);var tb=Y.reduce(function(s,y){var f=t10[y].find(function(x){return x.n===b});return s+(f?f.v:0)},0);return tb-ta});fn=fn.slice(0,15);ec.init(document.getElementById("c7")).setOption({legend:{data:["2024","2025","2026"],textStyle:{color:"#8899bb",fontSize:10}},xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},yAxis:{type:"category",data:fn,axisLabel:{fontSize:10,color:"#8899bb"}},series:Y.map(function(y){return{name:y,type:"bar",data:fn.map(function(n){var f=t10[y].find(function(x){return x.n===n});return{value:f?f.v:0,itemStyle:{color:yc[y]}}}),barMaxWidth:18,label:{show:true,position:"right",fontSize:9,color:"#fff",formatter:function(p){return p.value>0?p.value.toLocaleString()+"票":""}}}}),grid:{left:130,right:50,top:30,bottom:20}});ec.init(document.getElementById("c8")).setOption({legend:{data:["0.1","1","9","99","999"],textStyle:{color:"#8899bb",fontSize:10}},xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(0)+"万":v}}},series:[["999","#ee5a6f"],["99","#f2994a"],["9","#f2c94c"],["1","#4facfe"],["0.1","#38ef7d"]].map(function(k){return{name:k[0],type:"bar",stack:"gift",data:["2024","2025","2026"].map(function(y){var gg=gifts[y]?gifts[y].find(function(x){return x.name===k[0]}):null;return{value:gg?gg.vote:0,itemStyle:{color:k[1]}}})}}),grid:{left:10,right:10,top:20,bottom:30}});</script></body></html>
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>张倩 三年总选完整对比</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<style>
+body{background:#0a0e1a;color:#e0e0e0;font-family:sans-serif;padding:0;margin:0}
+.hdr{background:linear-gradient(135deg,#0f1429,#1a1040);border-bottom:1px solid rgba(102,126,234,.2);padding:20px;text-align:center}
+.hdr h1{font-size:22px;font-weight:700;background:linear-gradient(135deg,#667eea,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.hdr p{color:#8899bb;font-size:12px}
+.c{max-width:1300px;margin:0 auto;padding:10px}
+.s{margin-bottom:14px}
+.st{font-size:13px;font-weight:600;color:#667eea;letter-spacing:2px;margin-bottom:10px;border-left:3px solid #667eea;padding-left:10px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:10px}
+.cd{background:linear-gradient(180deg,rgba(20,25,50,.9),rgba(15,18,35,.95));border:1px solid rgba(102,126,234,.12);border-radius:10px;padding:14px}
+.cd h3{font-size:14px;font-weight:600;color:#c0c8e0;margin-bottom:10px}
+.ch{width:100%;height:300px}
+.ch-sm{width:100%;height:220px}
+.full{grid-column:1/-1}
+.sc{background:linear-gradient(135deg,rgba(102,126,234,.12),rgba(118,75,162,.08));border:1px solid rgba(102,126,234,.15);border-radius:8px;padding:10px;text-align:center}
+.sc .n{font-size:18px;font-weight:700;color:#fff}
+.sc .l{font-size:10px;color:#8899bb;margin-top:2px}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:10px}
+.ft{text-align:center;color:#445;font-size:11px;padding:16px;margin-top:12px}
+@media(max-width:640px){.g{grid-template-columns:1fr}.hdr h1{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="hdr"><h1>张倩 · 三年总选完整数据对比</h1><p>2024 → 2025 → 2026 · 排名 · 票数 · 粉丝 · 礼物 · 共10组图表</p></div>
+<div class="c" id="app"></div>
+<div class="ft">数据来源: xox48.top</div>
+<script>
+window.onerror=function(m,u,l){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>JS\u9519\u8bef:</b> "+m+"<br><pre>"+JSON.stringify({msg:m,url:u,line:l})+"</pre></div>"};
+try{
+var Y=["2024","2025","2026"];
+var E={"2024": {"rank": 61, "score": 8459.7, "fansCount": 258, "fansTotal": 8459.7, "top1Name": "顺 顺", "top1Vote": 2308, "top5Sum": 5774.9, "top10Sum": 7147.4, "top20Sum": 7677.1, "gini": "0.9351"}, "2025": {"rank": 45, "score": 16293.6, "fansCount": 308, "fansTotal": 16293.6, "top1Name": "顺 顺", "top1Vote": 3214, "top5Sum": 10184.1, "top10Sum": 12601.9, "top20Sum": 14043.9, "gini": "0.9259"}, "2026": {"rank": 35, "score": 11618.7, "fansCount": 214, "fansTotal": 11618.7, "top1Name": "霞姬👛", "top1Vote": 1674.1, "top5Sum": 5257.1, "top10Sum": 7083.1, "top20Sum": 9201.2, "gini": "0.8670"}};
+var t10={"2024": [{"n": "顺 顺", "v": 2308}, {"n": "SNH48-张倩西米露补给站", "v": 1197}, {"n": "池也一", "v": 1009.9}, {"n": "橘夏里的星星沙O_o", "v": 644}, {"n": "阿姬", "v": 616}, {"n": "中号", "v": 464.5}, {"n": "十二月的尾巴", "v": 328}, {"n": "忆白不白（lsoavgeo）", "v": 253}, {"n": "我将在热烈的夏季", "v": 178}, {"n": "豆猫(倩宝单推)", "v": 149}], "2025": [{"n": "顺 顺", "v": 3214}, {"n": "轩可y", "v": 2360}, {"n": "霞姬", "v": 2131.1}, {"n": "张倩的冬日部防卫队", "v": 1478}, {"n": "白嫖使小肥🐑快乐", "v": 1001}, {"n": "TianTian", "v": 703}, {"n": "蓝酱每天睡饱饱", "v": 625}, {"n": "中号", "v": 520}, {"n": "十二月的尾巴", "v": 285}, {"n": "JumpJump跳跳大直男", "v": 284.8}], "2026": [{"n": "霞姬👛", "v": 1674.1}, {"n": "蓝蓝每天睡饱饱", "v": 1224}, {"n": "顺顺👛（惔惔の沋喐、、、", "v": 1110}, {"n": "轩可忘忘忘👛", "v": 629}, {"n": "Pototo‘s🍒", "v": 620}, {"n": "🐑👛🐑👛🐑", "v": 521}, {"n": "Wooooooo", "v": 386}, {"n": "TTTiantian", "v": 319}, {"n": "杼熠", "v": 302}, {"n": "从涵意", "v": 298}]};
+var gifts={"2024": [{"name": "999", "num": 1, "vote": 999, "pnum": 1}, {"name": "99", "num": 36, "vote": 3564, "pnum": 10}, {"name": "9", "num": 278, "vote": 2502, "pnum": 47}, {"name": "1", "num": 1358, "vote": 1358, "pnum": 156}, {"name": "0.1", "num": 367, "vote": 36.7, "pnum": 125}], "2025": [{"name": "999", "num": 4, "vote": 3996, "pnum": 4}, {"name": "99", "num": 51, "vote": 5049, "pnum": 12}, {"name": "9", "num": 537, "vote": 4833, "pnum": 89}, {"name": "1", "num": 2395, "vote": 2395, "pnum": 212}, {"name": "0.1", "num": 206, "vote": 20.6, "pnum": 97}], "2026": [{"name": "999", "num": 2, "vote": 1998, "pnum": 2}, {"name": "99", "num": 33, "vote": 3267, "pnum": 15}, {"name": "9", "num": 350, "vote": 3150, "pnum": 81}, {"name": "1", "num": 3164, "vote": 3164, "pnum": 152}, {"name": "0.1", "num": 397, "vote": 39.7, "pnum": 68}]};
+var yc={2024:"#4facfe",2025:"#f2994a",2026:"#f093fb"};
+var ec=echarts,H=[],ctx=document.getElementById("app");
+var l10=function(x){return x.toLocaleString()};
+H.push('<div class="sum">');
+Y.forEach(function(y){H.push('<div class="sc"><div class="n">#'+E[y].rank+'</div><div class="l">'+y+'\u5e74\u6392\u540d</div></div>')});
+H.push('</div><div class="sum">');
+Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+(E[y].score/10000).toFixed(2)+'\u4e07</div><div class="l">'+y+'\u5e74\u7968\u6570</div></div>')});
+H.push('</div><div class="sum">');
+Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+E[y].fansCount+'\u4eba</div><div class="l">'+y+'\u5e74\u7c89\u4e1d</div></div>')});
+H.push('</div>');
+H.push('<div class="s"><div class="st">\u25b6 \u6392\u540d &amp; \u7968\u6570\u8d8b\u52bf</div><div class="g">');
+H.push('<div class="cd"><h3>\u6392\u540d\u53d8\u5316 (\u6298\u7ebf\u56fe)</h3><div id="c1" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>\u7968\u6570\u589e\u957f (\u6761\u5f62\u56fe)</h3><div id="c2" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>\u7c89\u4e1d\u6570\u91cf\u53d8\u5316 (\u6761\u5f62\u56fe)</h3><div id="c3" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>\u5934\u90e8\u7c89\u4e1d\u8d21\u732e\u5360\u6bd4 (\u6298\u7ebf\u56fe)</h3><div id="c4" class="ch-sm"></div></div>');
+H.push('</div></div>');
+H.push('<div class="s"><div class="st">\u25b6 \u7c89\u4e1d\u5206\u6790</div><div class="g">');
+H.push('<div class="cd"><h3>\u5934\u53f7\u7c89\u4e1d\u7968\u6570\u5bf9\u6bd4 (\u6761\u5f62\u56fe)</h3><div id="c5" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>\u57fa\u5c3c\u7cfb\u6570 \u7c89\u4e1d\u96c6\u4e2d\u5ea6 (\u6298\u7ebf\u56fe)</h3><div id="c6" class="ch-sm"></div></div>');
+H.push('<div class="cd full"><h3>Top20 \u7c89\u4e1d\u6bcf\u5e74\u7968\u6570\u5bf9\u6bd4 (\u5206\u7ec4\u6761\u5f62\u56fe)</h3><div id="c7" class="ch"></div></div>');
+H.push('</div></div>');
+H.push('<div class="s"><div class="st">\u25b6 \u793c\u7269\u5206\u6790</div><div class="g">');
+H.push('<div class="cd full"><h3>\u793c\u7269\u6784\u6210\u5bf9\u6bd4 (\u5806\u53e0\u6761\u5f62\u56fe)</h3><div id="c8" class="ch"></div></div>');
+H.push('</div></div>');
+H.push('<div class="s"><div class="st">\u25b6 \u6df1\u5ea6\u6307\u6807</div><div class="g">');
+H.push('<div class="cd"><h3>\u5e73\u5747\u7c89\u4e1d\u6295\u7968\u503c (\u6761\u5f62\u56fe)</h3><div id="c9" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>\u5934\u53f7\u7c89\u4e1d\u5360\u6bd4\u8d8b\u52bf (\u6298\u7ebf\u56fe)</h3><div id="c10" class="ch-sm"></div></div>');
+H.push('</div></div>');
+ctx.innerHTML=H.join("");
+try{
+ec.init(document.getElementById("c1")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u6392\u540d: <b>#"+p[0].data.toFixed(0)+"</b>"}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",inverse:true,min:30,max:65,axisLabel:{fontSize:11,color:"#8899bb"}},
+series:[{type:"line",data:Y.map(function(y){return{value:E[y].rank,itemStyle:{color:yc[y]},symbol:"circle",symbolSize:14}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"bottom",fontSize:14,fontWeight:"bold",color:"#fff",formatter:function(p){return "#"+p.value.toFixed(0)}}}],
+grid:{left:10,right:10,top:20,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c1 err",e)}
+try{
+ec.init(document.getElementById("c2")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u7968\u6570: <b>"+l10(p[0].data)+"</b>"}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"\u4e07":v}}},
+series:[{type:"bar",data:Y.map(function(y){return{value:E[y].score,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return l10(p.value)+"\u7968"}}}],
+grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c2 err",e)}
+try{
+ec.init(document.getElementById("c3")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u7c89\u4e1d\u6570: <b>"+p[0].data.toFixed(0)+"\u4eba</b>"}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},
+series:[{type:"bar",data:Y.map(function(y){return{value:E[y].fansCount,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value+"\u4eba"}}}],
+grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c3 err",e)}
+try{
+ec.init(document.getElementById("c4")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){var s="<b>"+p[0].axisValue+"\u5e74</b><br>";p.forEach(function(d){s+=d.marker+d.seriesName+": <b>"+d.data+"%</b><br>"});return s}},
+legend:{data:["Top5","Top10","Top20"],textStyle:{color:"#8899bb",fontSize:10}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",max:100,axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v+"%"}}},
+series:[
+{name:"Top5",type:"line",data:Y.map(function(y){return{value:parseFloat((E[y].top5Sum/E[y].fansTotal*100).toFixed(1))}}),lineStyle:{color:"#f2994a",width:2},symbol:"diamond",symbolSize:10,label:{show:true,position:"top",fontSize:10,color:"#f2994a",formatter:function(p){return p.value+"%"}}},
+{name:"Top10",type:"line",data:Y.map(function(y){return{value:parseFloat((E[y].top10Sum/E[y].fansTotal*100).toFixed(1))}}),lineStyle:{color:"#f2c94c",width:2},symbol:"diamond",symbolSize:10,label:{show:true,position:"bottom",fontSize:10,color:"#f2c94c",formatter:function(p){return p.value+"%"}}},
+{name:"Top20",type:"line",data:Y.map(function(y){return{value:parseFloat((E[y].top20Sum/E[y].fansTotal*100).toFixed(1))}}),lineStyle:{color:"#38ef7d",width:2},symbol:"diamond",symbolSize:10,label:{show:true,position:"top",fontSize:10,color:"#38ef7d",formatter:function(p){return p.value+"%"}}}
+],
+grid:{left:10,right:10,top:30,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c4 err",e)}
+try{
+ec.init(document.getElementById("c5")).setOption({
+tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){var d=p[0].data;return "<b>"+d.name+"</b><br>\u7968\u6570: <b>"+l10(d.value)+"</b><br>\u5360\u6bd4: <b>"+d.pct+"%</b>"}},
+xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},
+yAxis:{type:"category",data:["2024","2025","2026"].reverse().map(function(y){return y+"\n"+E[y].top1Name}),axisLabel:{fontSize:12,color:"#c0c8e0"}},
+series:[{type:"bar",data:["2024","2025","2026"].reverse().map(function(y){var pct=(E[y].top1Vote/E[y].score*100).toFixed(1);return{value:E[y].top1Vote,itemStyle:{color:yc[y],borderRadius:[0,6,6,0]},pct:pct,name:E[y].top1Name}}),barMaxWidth:32,label:{show:true,position:"right",fontSize:10,color:"#fff",formatter:function(p){return l10(p.value)+"\u7968("+p.data.pct+"%)"}}}],
+grid:{left:130,right:30,top:10,bottom:20}
+});
+}catch(e){console.log("c5 err",e)}
+try{
+ec.init(document.getElementById("c6")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u57fa\u5c3c\u7cfb\u6570: <b>"+p[0].value.toFixed(4)+"</b><br>(0=\u5b8c\u5168\u5747\u5300, 1=\u9ad8\u5ea6\u96c6\u4e2d)"}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",min:0.85,max:0.94,axisLabel:{fontSize:11,color:"#8899bb"}},
+series:[{type:"line",data:Y.map(function(y){return{value:parseFloat(E[y].gini),itemStyle:{color:yc[y]},symbol:"circle",symbolSize:12}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(4)}}}],
+grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c6 err",e)}
+try{
+var fn=[];
+Y.forEach(function(y){t10[y].forEach(function(f){if(!fn.some(function(n){return n===f.n}))fn.push(f.n)})});
+fn.sort(function(a,b){var ta=Y.reduce(function(s,y){var f=t10[y].find(function(x){return x.n===a});return s+(f?f.v:0)},0);var tb=Y.reduce(function(s,y){var f=t10[y].find(function(x){return x.n===b});return s+(f?f.v:0)},0);return tb-ta});
+fn=fn.slice(0,15);
+if(fn.length>0){
+ec.init(document.getElementById("c7")).setOption({
+tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){var s="<b>"+p[0].name+"</b><br>";p.forEach(function(d){s+=d.marker+d.seriesName+": <b>"+(d.data.value>0?l10(d.data.value):"--")+"\u7968</b><br>"});return s}},
+legend:{data:["2024","2025","2026"],textStyle:{color:"#8899bb",fontSize:10}},
+xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"\u4e07":v}}},
+yAxis:{type:"category",data:fn,axisLabel:{fontSize:10,color:"#b0b8d0"}},
+series:Y.map(function(y){return{name:y,type:"bar",data:fn.map(function(n){var f=t10[y].find(function(x){return x.n===n});return{value:f?f.v:0,itemStyle:{color:yc[y]}}}),barMaxWidth:16,label:{show:true,position:"right",fontSize:9,color:"#fff",formatter:function(p){return p.data.value>0?l10(p.data.value)+"\u7968":""}}}}),
+grid:{left:130,right:50,top:25,bottom:30}
+});
+}
+}catch(e){console.log("c7 err",e)}
+try{
+ec.init(document.getElementById("c8")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){var s="<b>"+p[0].axisValue+"</b><br>";p.forEach(function(d){if(d.data.value>0){s+=d.marker+d.seriesName+"\u5143: <b>"+l10(d.data.value)+"\u7968</b> ("+d.data.num+"\u4e2a,"+d.data.pnum+"\u4eba)<br>"}});return s}},
+legend:{data:["999","99","9","1","0.1"],textStyle:{color:"#8899bb",fontSize:10}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"\u4e07":v}}},
+series:[["999","#ee5a6f"],["99","#f2994a"],["9","#f2c94c"],["1","#4facfe"],["0.1","#38ef7d"]].map(function(k){return{name:k[0],type:"bar",stack:"gift",data:["2024","2025","2026"].map(function(y){var gg=gifts[y]?gifts[y].find(function(x){return x.name===k[0]}):null;return{value:gg?gg.vote:0,itemStyle:{color:k[1]},num:gg?gg.num:0,pnum:gg?gg.pnum:0}}),label:{show:true,position:"inside",fontSize:9,color:"#333",formatter:function(p){return p.data.value>0?l10(p.data.value):""}}}}),
+grid:{left:10,right:10,top:20,bottom:30}
+});
+}catch(e){console.log("c8 err",e)}
+try{
+ec.init(document.getElementById("c9")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u5e73\u5747\u6295\u7968: <b>"+p[0].data.toFixed(1)+"\u7968/\u4eba</b>"}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v.toFixed(0)+"\u7968"}}},
+series:[{type:"bar",data:Y.map(function(y){var avg=E[y].fansCount>0?E[y].score/E[y].fansCount:0;return{value:parseFloat(avg.toFixed(1)),itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value.toFixed(1)+"\u7968/\u4eba"}}}],
+grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c9 err",e)}
+try{
+ec.init(document.getElementById("c10")).setOption({
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u5934\u53f7\u7c89\u4e1d\u5360\u6bd4: <b>"+p[0].data.toFixed(1)+"%</b><br>\u5934\u53f7\u7c89\u4e1d: "+p[0].data.name}},
+xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v+"%"}}},
+series:[{type:"line",data:Y.map(function(y){var pct=E[y].top1Vote/E[y].score*100;return{value:parseFloat(pct.toFixed(1)),itemStyle:{color:yc[y]},symbol:"diamond",symbolSize:12,name:E[y].top1Name}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(1)+"%"}}}],
+grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
+});
+}catch(e){console.log("c10 err",e)}
+}catch(e){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>\u9519\u8bef:</b> "+e.message+"<br><pre>"+e.stack+"</pre></div>"}
+</script>
+</body>
+</html>
