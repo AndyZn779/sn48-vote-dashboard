@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>张倩 三年总选完整对比</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <style>
@@ -32,7 +32,8 @@ body{background:#0a0e1a;color:#e0e0e0;font-family:sans-serif;padding:0;margin:0}
 <div class="c" id="app"></div>
 <div class="ft">数据来源: xox48.top</div>
 <script>
-window.onerror=function(m,u,l){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>JS\u9519\u8bef:</b> "+m+"<br><pre>"+JSON.stringify({msg:m,url:u,line:l})+"</pre></div>"};
+
+window.onerror=function(m,u,l){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>JS错误:</b> "+m+"<br><pre>"+JSON.stringify({msg:m,url:u,line:l})+"</pre></div>"};
 try{
 var Y=["2024","2025","2026"];
 var E={"2024": {"rank": 61, "score": 8459.7, "fansCount": 258, "fansTotal": 8459.7, "top1Name": "顺 顺", "top1Vote": 2308, "top5Sum": 5774.9, "top10Sum": 7147.4, "top20Sum": 7677.1, "gini": "0.9351"}, "2025": {"rank": 45, "score": 16293.6, "fansCount": 308, "fansTotal": 16293.6, "top1Name": "顺 顺", "top1Vote": 3214, "top5Sum": 10184.1, "top10Sum": 12601.9, "top20Sum": 14043.9, "gini": "0.9259"}, "2026": {"rank": 35, "score": 11618.7, "fansCount": 214, "fansTotal": 11618.7, "top1Name": "霞姬👛", "top1Vote": 1674.1, "top5Sum": 5257.1, "top10Sum": 7083.1, "top20Sum": 9201.2, "gini": "0.8670"}};
@@ -42,61 +43,73 @@ var yc={2024:"#4facfe",2025:"#f2994a",2026:"#f093fb"};
 var ec=echarts,H=[],ctx=document.getElementById("app");
 var l10=function(x){return x.toLocaleString()};
 H.push('<div class="sum">');
-Y.forEach(function(y){H.push('<div class="sc"><div class="n">#'+E[y].rank+'</div><div class="l">'+y+'\u5e74\u6392\u540d</div></div>')});
+Y.forEach(function(y){H.push('<div class="sc"><div class="n">#'+E[y].rank+'</div><div class="l">'+y+'年排名</div></div>')});
 H.push('</div><div class="sum">');
-Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+(E[y].score/10000).toFixed(2)+'\u4e07</div><div class="l">'+y+'\u5e74\u7968\u6570</div></div>')});
+Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+(E[y].score/10000).toFixed(2)+'万</div><div class="l">'+y+'年票数</div></div>')});
 H.push('</div><div class="sum">');
-Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+E[y].fansCount+'\u4eba</div><div class="l">'+y+'\u5e74\u7c89\u4e1d</div></div>')});
+Y.forEach(function(y){H.push('<div class="sc"><div class="n">'+E[y].fansCount+'人</div><div class="l">'+y+'年粉丝</div></div>')});
 H.push('</div>');
-H.push('<div class="s"><div class="st">\u25b6 \u6392\u540d &amp; \u7968\u6570\u8d8b\u52bf</div><div class="g">');
-H.push('<div class="cd"><h3>\u6392\u540d\u53d8\u5316 (\u6298\u7ebf\u56fe)</h3><div id="c1" class="ch-sm"></div></div>');
-H.push('<div class="cd"><h3>\u7968\u6570\u589e\u957f (\u6761\u5f62\u56fe)</h3><div id="c2" class="ch-sm"></div></div>');
-H.push('<div class="cd"><h3>\u7c89\u4e1d\u6570\u91cf\u53d8\u5316 (\u6761\u5f62\u56fe)</h3><div id="c3" class="ch-sm"></div></div>');
-H.push('<div class="cd"><h3>\u5934\u90e8\u7c89\u4e1d\u8d21\u732e\u5360\u6bd4 (\u6298\u7ebf\u56fe)</h3><div id="c4" class="ch-sm"></div></div>');
+
+H.push('<div class="s"><div class="st">▶ 排名 &amp; 票数趋势</div><div class="g">');
+H.push('<div class="cd"><h3>排名变化 (折线图)</h3><div id="c1" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>票数增长 (条形图)</h3><div id="c2" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>粉丝数量变化 (条形图)</h3><div id="c3" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>头部粉丝贡献占比 (折线图)</h3><div id="c4" class="ch-sm"></div></div>');
 H.push('</div></div>');
-H.push('<div class="s"><div class="st">\u25b6 \u7c89\u4e1d\u5206\u6790</div><div class="g">');
-H.push('<div class="cd"><h3>\u5934\u53f7\u7c89\u4e1d\u7968\u6570\u5bf9\u6bd4 (\u6761\u5f62\u56fe)</h3><div id="c5" class="ch-sm"></div></div>');
-H.push('<div class="cd"><h3>\u57fa\u5c3c\u7cfb\u6570 \u7c89\u4e1d\u96c6\u4e2d\u5ea6 (\u6298\u7ebf\u56fe)</h3><div id="c6" class="ch-sm"></div></div>');
-H.push('<div class="cd full"><h3>Top20 \u7c89\u4e1d\u6bcf\u5e74\u7968\u6570\u5bf9\u6bd4 (\u5206\u7ec4\u6761\u5f62\u56fe)</h3><div id="c7" class="ch"></div></div>');
+
+H.push('<div class="s"><div class="st">▶ 粉丝分析</div><div class="g">');
+H.push('<div class="cd"><h3>头号粉丝票数对比 (条形图)</h3><div id="c5" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>基尼系数 粉丝集中度 (折线图)</h3><div id="c6" class="ch-sm"></div></div>');
+H.push('<div class="cd full"><h3>Top20 粉丝每年票数对比 (分组条形图)</h3><div id="c7" class="ch"></div></div>');
 H.push('</div></div>');
-H.push('<div class="s"><div class="st">\u25b6 \u793c\u7269\u5206\u6790</div><div class="g">');
-H.push('<div class="cd full"><h3>\u793c\u7269\u6784\u6210\u5bf9\u6bd4 (\u5806\u53e0\u6761\u5f62\u56fe)</h3><div id="c8" class="ch"></div></div>');
+
+H.push('<div class="s"><div class="st">▶ 礼物分析</div><div class="g">');
+H.push('<div class="cd full"><h3>礼物构成对比 (堆叠条形图)</h3><div id="c8" class="ch"></div></div>');
 H.push('</div></div>');
-H.push('<div class="s"><div class="st">\u25b6 \u6df1\u5ea6\u6307\u6807</div><div class="g">');
-H.push('<div class="cd"><h3>\u5e73\u5747\u7c89\u4e1d\u6295\u7968\u503c (\u6761\u5f62\u56fe)</h3><div id="c9" class="ch-sm"></div></div>');
-H.push('<div class="cd"><h3>\u5934\u53f7\u7c89\u4e1d\u5360\u6bd4\u8d8b\u52bf (\u6298\u7ebf\u56fe)</h3><div id="c10" class="ch-sm"></div></div>');
+
+H.push('<div class="s"><div class="st">▶ 深度指标</div><div class="g">');
+H.push('<div class="cd"><h3>平均粉丝投票值 (条形图)</h3><div id="c9" class="ch-sm"></div></div>');
+H.push('<div class="cd"><h3>头号粉丝占比趋势 (折线图)</h3><div id="c10" class="ch-sm"></div></div>');
 H.push('</div></div>');
 ctx.innerHTML=H.join("");
+
+/**** CHART 1 - 排名变化 ****/
 try{
 ec.init(document.getElementById("c1")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u6392\u540d: <b>#"+p[0].data.toFixed(0)+"</b>"}},
+tooltip:{trigger:"axis"},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
 yAxis:{type:"value",inverse:true,min:30,max:65,axisLabel:{fontSize:11,color:"#8899bb"}},
-series:[{type:"line",data:Y.map(function(y){return{value:E[y].rank,itemStyle:{color:yc[y]},symbol:"circle",symbolSize:14}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"bottom",fontSize:14,fontWeight:"bold",color:"#fff",formatter:function(p){return "#"+p.value.toFixed(0)}}}],
+series:[{type:"line",data:Y.map(function(y){return{value:E[y].rank,itemStyle:{color:yc[y]},symbol:"circle",symbolSize:14}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"bottom",fontSize:14,fontWeight:"bold",color:"#fff",formatter:function(p){return "#"+p.value.toFixed(0)}}],
 grid:{left:10,right:10,top:20,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c1 err",e)}
+
+/**** CHART 2 - 票数增长 ****/
 try{
 ec.init(document.getElementById("c2")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u7968\u6570: <b>"+l10(p[0].data)+"</b>"}},
+tooltip:{trigger:"axis"},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
-yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"\u4e07":v}}},
-series:[{type:"bar",data:Y.map(function(y){return{value:E[y].score,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return l10(p.value)+"\u7968"}}}],
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"万":v}}},
+series:[{type:"bar",data:Y.map(function(y){return{value:E[y].score,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return l10(p.value)+"票"}}],
 grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c2 err",e)}
+
+/**** CHART 3 - 粉丝数量 ****/
 try{
 ec.init(document.getElementById("c3")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u7c89\u4e1d\u6570: <b>"+p[0].data.toFixed(0)+"\u4eba</b>"}},
+tooltip:{trigger:"axis"},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
 yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},
-series:[{type:"bar",data:Y.map(function(y){return{value:E[y].fansCount,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value+"\u4eba"}}}],
+series:[{type:"bar",data:Y.map(function(y){return{value:E[y].fansCount,itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value+"人"}}],
 grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c3 err",e)}
+
+/**** CHART 4 - 头部粉丝贡献占比 ****/
 try{
 ec.init(document.getElementById("c4")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){var s="<b>"+p[0].axisValue+"\u5e74</b><br>";p.forEach(function(d){s+=d.marker+d.seriesName+": <b>"+d.data+"%</b><br>"});return s}},
+tooltip:{trigger:"axis",formatter:function(p){var s="<b>"+p[0].axisValue+"年</b><br>";p.forEach(function(d){s+=d.marker+d.seriesName+": <b>"+d.data+"%</b><br>"});return s}},
 legend:{data:["Top5","Top10","Top20"],textStyle:{color:"#8899bb",fontSize:10}},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
 yAxis:{type:"value",max:100,axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v+"%"}}},
@@ -108,24 +121,30 @@ series:[
 grid:{left:10,right:10,top:30,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c4 err",e)}
+
+/**** CHART 5 - 头号粉丝票数对比 ****/
 try{
 ec.init(document.getElementById("c5")).setOption({
-tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){var d=p[0].data;return "<b>"+d.name+"</b><br>\u7968\u6570: <b>"+l10(d.value)+"</b><br>\u5360\u6bd4: <b>"+d.pct+"%</b>"}},
+tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){var d=p[0].data;return "<b>"+d.name+"</b><br>票数: <b>"+l10(d.value)+"</b><br>占比: <b>"+d.pct+"%</b>"}},
 xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb"}},
 yAxis:{type:"category",data:["2024","2025","2026"].reverse().map(function(y){return y+"\n"+E[y].top1Name}),axisLabel:{fontSize:12,color:"#c0c8e0"}},
-series:[{type:"bar",data:["2024","2025","2026"].reverse().map(function(y){var pct=(E[y].top1Vote/E[y].score*100).toFixed(1);return{value:E[y].top1Vote,itemStyle:{color:yc[y],borderRadius:[0,6,6,0]},pct:pct,name:E[y].top1Name}}),barMaxWidth:32,label:{show:true,position:"right",fontSize:10,color:"#fff",formatter:function(p){return l10(p.value)+"\u7968("+p.data.pct+"%)"}}}],
+series:[{type:"bar",data:["2024","2025","2026"].reverse().map(function(y){var pct=(E[y].top1Vote/E[y].score*100).toFixed(1);return{value:E[y].top1Vote,itemStyle:{color:yc[y],borderRadius:[0,6,6,0]},pct:pct,name:E[y].top1Name}}),barMaxWidth:32,label:{show:true,position:"right",fontSize:10,color:"#fff",formatter:function(p){return l10(p.value)+"票("+p.data.pct+"%)"}}],
 grid:{left:130,right:30,top:10,bottom:20}
 });
 }catch(e){console.log("c5 err",e)}
+
+/**** CHART 6 - 基尼系数 ****/
 try{
 ec.init(document.getElementById("c6")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u57fa\u5c3c\u7cfb\u6570: <b>"+p[0].value.toFixed(4)+"</b><br>(0=\u5b8c\u5168\u5747\u5300, 1=\u9ad8\u5ea6\u96c6\u4e2d)"}},
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"年<br>基尼系数: <b>"+p[0].value.toFixed(4)+"</b><br>(0=完全均匀, 1=高度集中)"}},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
 yAxis:{type:"value",min:0.85,max:0.94,axisLabel:{fontSize:11,color:"#8899bb"}},
-series:[{type:"line",data:Y.map(function(y){return{value:parseFloat(E[y].gini),itemStyle:{color:yc[y]},symbol:"circle",symbolSize:12}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(4)}}}],
+series:[{type:"line",data:Y.map(function(y){return{value:parseFloat(E[y].gini),itemStyle:{color:yc[y]},symbol:"circle",symbolSize:12}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(4)}}],
 grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c6 err",e)}
+
+/**** CHART 7 - Top20 粉丝对比 ****/
 try{
 var fn=[];
 Y.forEach(function(y){t10[y].forEach(function(f){if(!fn.some(function(n){return n===f.n}))fn.push(f.n)})});
@@ -133,44 +152,51 @@ fn.sort(function(a,b){var ta=Y.reduce(function(s,y){var f=t10[y].find(function(x
 fn=fn.slice(0,15);
 if(fn.length>0){
 ec.init(document.getElementById("c7")).setOption({
-tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){var s="<b>"+p[0].name+"</b><br>";p.forEach(function(d){s+=d.marker+d.seriesName+": <b>"+(d.data.value>0?l10(d.data.value):"--")+"\u7968</b><br>"});return s}},
+tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(p){var s="<b>"+p[0].name+"</b><br>";p.forEach(function(d){s+=d.marker+d.seriesName+": <b>"+(d.data.value>0?l10(d.data.value):"--")+"票</b><br>"});return s}},
 legend:{data:["2024","2025","2026"],textStyle:{color:"#8899bb",fontSize:10}},
-xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"\u4e07":v}}},
+xAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"万":v}}},
 yAxis:{type:"category",data:fn,axisLabel:{fontSize:10,color:"#b0b8d0"}},
-series:Y.map(function(y){return{name:y,type:"bar",data:fn.map(function(n){var f=t10[y].find(function(x){return x.n===n});return{value:f?f.v:0,itemStyle:{color:yc[y]}}}),barMaxWidth:16,label:{show:true,position:"right",fontSize:9,color:"#fff",formatter:function(p){return p.data.value>0?l10(p.data.value)+"\u7968":""}}}}),
+series:Y.map(function(y){return{name:y,type:"bar",data:fn.map(function(n){var f=t10[y].find(function(x){return x.n===n});return{value:f?f.v:0,itemStyle:{color:yc[y]}}}),barMaxWidth:16,label:{show:true,position:"right",fontSize:9,color:"#fff",formatter:function(p){return p.data.value>0?l10(p.data.value)+"票":""}}}}),
 grid:{left:130,right:50,top:25,bottom:30}
 });
 }
 }catch(e){console.log("c7 err",e)}
+
+/**** CHART 8 - 礼物构成 ****/
 try{
 ec.init(document.getElementById("c8")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){var s="<b>"+p[0].axisValue+"</b><br>";p.forEach(function(d){if(d.data.value>0){s+=d.marker+d.seriesName+"\u5143: <b>"+l10(d.data.value)+"\u7968</b> ("+d.data.num+"\u4e2a,"+d.data.pnum+"\u4eba)<br>"}});return s}},
+tooltip:{trigger:"axis",formatter:function(p){var s="<b>"+p[0].axisValue+"</b><br>";p.forEach(function(d){if(d.data.value>0){s+=d.marker+d.seriesName+"元: <b>"+l10(d.data.value)+"票</b> ("+d.data.num+"个,"+d.data.pnum+"人)<br>"}});return s}},
 legend:{data:["999","99","9","1","0.1"],textStyle:{color:"#8899bb",fontSize:10}},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
-yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"\u4e07":v}}},
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v>=10000?(v/10000).toFixed(1)+"万":v}}},
 series:[["999","#ee5a6f"],["99","#f2994a"],["9","#f2c94c"],["1","#4facfe"],["0.1","#38ef7d"]].map(function(k){return{name:k[0],type:"bar",stack:"gift",data:["2024","2025","2026"].map(function(y){var gg=gifts[y]?gifts[y].find(function(x){return x.name===k[0]}):null;return{value:gg?gg.vote:0,itemStyle:{color:k[1]},num:gg?gg.num:0,pnum:gg?gg.pnum:0}}),label:{show:true,position:"inside",fontSize:9,color:"#333",formatter:function(p){return p.data.value>0?l10(p.data.value):""}}}}),
 grid:{left:10,right:10,top:20,bottom:30}
 });
 }catch(e){console.log("c8 err",e)}
+
+/**** CHART 9 - 平均粉丝投票值 ****/
 try{
 ec.init(document.getElementById("c9")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u5e73\u5747\u6295\u7968: <b>"+p[0].data.toFixed(1)+"\u7968/\u4eba</b>"}},
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"年<br>平均投票: <b>"+p[0].data.toFixed(1)+"票/人</b>"}},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
-yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v.toFixed(0)+"\u7968"}}},
-series:[{type:"bar",data:Y.map(function(y){var avg=E[y].fansCount>0?E[y].score/E[y].fansCount:0;return{value:parseFloat(avg.toFixed(1)),itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value.toFixed(1)+"\u7968/\u4eba"}}}],
+yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v.toFixed(0)+"票"}}},
+series:[{type:"bar",data:Y.map(function(y){var avg=E[y].fansCount>0?E[y].score/E[y].fansCount:0;return{value:parseFloat(avg.toFixed(1)),itemStyle:{color:yc[y],borderRadius:[6,6,0,0]}}}),barMaxWidth:56,label:{show:true,position:"top",fontSize:13,fontWeight:"bold",color:"#fff",formatter:function(p){return p.value.toFixed(1)+"票/人"}}],
 grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c9 err",e)}
+
+/**** CHART 10 - 头号粉丝占比趋势 ****/
 try{
 ec.init(document.getElementById("c10")).setOption({
-tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"\u5e74<br>\u5934\u53f7\u7c89\u4e1d\u5360\u6bd4: <b>"+p[0].data.toFixed(1)+"%</b><br>\u5934\u53f7\u7c89\u4e1d: "+p[0].data.name}},
+tooltip:{trigger:"axis",formatter:function(p){return p[0].axisValue+"年<br>头号粉丝占比: <b>"+p[0].data.toFixed(1)+"%</b><br>头号粉丝: "+p[0].data.name}},
 xAxis:{type:"category",data:["2024","2025","2026"],axisLabel:{fontSize:13,color:"#c0c8e0"}},
 yAxis:{type:"value",axisLabel:{fontSize:11,color:"#8899bb",formatter:function(v){return v+"%"}}},
-series:[{type:"line",data:Y.map(function(y){var pct=E[y].top1Vote/E[y].score*100;return{value:parseFloat(pct.toFixed(1)),itemStyle:{color:yc[y]},symbol:"diamond",symbolSize:12,name:E[y].top1Name}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(1)+"%"}}}],
+series:[{type:"line",data:Y.map(function(y){var pct=E[y].top1Vote/E[y].score*100;return{value:parseFloat(pct.toFixed(1)),itemStyle:{color:yc[y]},symbol:"diamond",symbolSize:12,name:E[y].top1Name}}),lineStyle:{color:"#667eea",width:3},areaStyle:{color:{type:"linear",x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:"rgba(102,126,234,.25)"},{offset:1,color:"rgba(102,126,234,.02)"}]}},label:{show:true,position:"top",fontSize:11,color:"#fff",formatter:function(p){return p.value.toFixed(1)+"%"}}],
 grid:{left:10,right:10,top:25,bottom:30,containLabel:true}
 });
 }catch(e){console.log("c10 err",e)}
-}catch(e){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>\u9519\u8bef:</b> "+e.message+"<br><pre>"+e.stack+"</pre></div>"}
+
+}catch(e){document.getElementById("app").innerHTML="<div style=padding:30px;color:#ee5a6f><b>错误:</b> "+e.message+"<br><pre>"+e.stack+"</pre></div>"}
 </script>
 </body>
 </html>
