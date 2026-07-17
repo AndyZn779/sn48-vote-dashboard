@@ -16,3 +16,12 @@
 - 数据来源: xox48.top (CORS 开放)
 - 图表库: ECharts 5.4.3
 - 所有数据在浏览器端实时计算
+
+
+## 张倩专用页面
+
+| 文件 | 说明 |
+|---|---|
+| zq_3year.html | 张倩三年总选完整数据对比 - 排名/票数/粉丝/礼物等10组图表 |
+| zq_test.html | 张倩 ECharts 测试页 |
+| zq_s2_analysis.html | 张倩 x Team SII 深度分析 |
