@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>SNH48 总选看板 - 手机访问</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e1a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:20px;min-height:100vh}
+h1{font-size:22px;background:linear-gradient(135deg,#667eea,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.sub{color:#8899bb;font-size:13px;margin-bottom:24px}
+.card{background:linear-gradient(180deg,rgba(20,25,50,.9),rgba(15,18,35,.95));border:1px solid rgba(102,126,234,.15);border-radius:12px;padding:16px;margin-bottom:16px}
+.card h2{font-size:16px;font-weight:600;color:#c0c8e0;margin-bottom:12px}
+.card p{font-size:13px;color:#b0b8d0;line-height:1.6;margin-bottom:10px}
+.link{display:block;background:rgba(102,126,234,.12);border:1px solid rgba(102,126,234,.2);border-radius:8px;padding:12px;margin-bottom:8px;text-decoration:none;color:#4facfe;font-size:14px;word-break:break-all}
+.link:hover{background:rgba(102,126,234,.2)}
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:600;margin-right:6px;vertical-align:middle}
+.tag.green{background:rgba(56,239,125,.15);color:#38ef7d}
+.tag.blue{background:rgba(79,172,254,.15);color:#4facfe}
+.tag.pink{background:rgba(240,147,251,.15);color:#f093fb}
+.qr-row{display:flex;gap:10px;flex-wrap:wrap}
+.qr-item{text-align:center;flex:1;min-width:140px}
+.qr-item img{width:140px;height:140px;border-radius:8px;background:#fff;padding:6px}
+.qr-item .label{font-size:11px;color:#8899bb;margin-top:4px}
+.step{font-size:13px;color:#b0b8d0;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.step .num{display:inline-block;background:#667eea;color:#fff;width:22px;height:22px;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:700;margin-right:8px}
+@media(max-width:480px){h1{font-size:18px}.qr-item img{width:110px;height:110px}}
+</style></head>
+<body>
+<h1>📱 手机访问看板</h1>
+<p class="sub">选择一种方式在手机上查看实时数据</p>
+
+<div class="card">
+<h2>🔗 方式一：同一 WiFi（最推荐）</h2>
+<p>手机连接同一个 WiFi，浏览器打开：</p>
+<a class="link" href="http://10.72.202.164:8080/dashboard.html">📊 仪表盘</a>
+<a class="link" href="http://10.72.202.164:8080/indicators.html">📈 量化指数</a>
+<a class="link" href="http://10.72.202.164:8080/zq_s2_analysis.html">👤 张倩×SII</a>
+</div>
+
+<div class="card">
+<h2>📥 方式二：下载到手机</h2>
+<p>点链接 → 点 Download → 在手机浏览器中打开文件</p>
+<a class="link" href="https://temp.sh/CWioU/dashboard.html"><span class="tag green">下载</span> 仪表盘</a>
+<a class="link" href="https://temp.sh/dnLDP/indicators.html"><span class="tag blue">下载</span> 量化指数</a>
+<a class="link" href="https://temp.sh/TgBjo/zq_s2_analysis.html"><span class="tag pink">下载</span> 张倩×SII</a>
+</div>
+
+<div class="card">
+<h2>📷 方式三：扫码下载到手机</h2>
+<p>用手机扫二维码 → 下载文件 → 用浏览器打开</p>
+<div class="qr-row">
+<div class="qr-item">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://temp.sh/CWioU/dashboard.html" alt="仪表盘" loading="lazy">
+<div class="label">📊 仪表盘</div>
+</div>
+<div class="qr-item">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://temp.sh/dnLDP/indicators.html" alt="量化指数" loading="lazy">
+<div class="label">📈 量化指数</div>
+</div>
+<div class="qr-item">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://temp.sh/TgBjo/zq_s2_analysis.html" alt="张倩×SII" loading="lazy">
+<div class="label">👤 张倩×SII</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>💡 说明</h2>
+<p>所有页面打开后会自动从 xox48.top API 拉取最新数据，在浏览器端实时计算图表和指标。</p>
+<p class="step"><span class="num">1</span>电脑不可关机（方式一需要）</p>
+<p class="step"><span class="num">2</span>手机和电脑连同一个 WiFi（方式一需要）</p>
+<p class="step"><span class="num">3</span>下载的文件双击/点击即可用（方式二/三）</p>
+<p class="step"><span class="num">4</span>所有页面实时更新数据，不需服务器</p>
+</div>
+</body></html>
